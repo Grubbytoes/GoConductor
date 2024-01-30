@@ -22,13 +22,3 @@ project/assembly_name="GoConductor Plugin"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/go_conductor/plugin.cfg")
-
-[importer_defaults]
-
-mp3={
-"bar_beats": 4,
-"beat_count": 0,
-"bpm": 0,
-"loop": true,
-"loop_offset": 0
-}

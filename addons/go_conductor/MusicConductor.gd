@@ -12,10 +12,8 @@ func _ready():
 	lead = get_child(0)
 	lead.track_end.connect(on_lead_track_end)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func play():
+	lead.play()
 
 func on_lead_track_end():
 	print("track ended")

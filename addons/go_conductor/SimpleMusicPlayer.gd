@@ -7,6 +7,7 @@ var audio_player
 
 func _ready():
 	audio_player = get_child(0)
+	audio_player.finished.connect(on_audio_player_finished)
 
 func play():
 	if playing:
@@ -33,6 +34,10 @@ func get_bus():
 
 func set_bus(new_bus: String):
 	audio_player.set_bus(new_bus)
+
+func on_audio_player_finished():
+	audio_player.play()
+	track_end.emit()
 
 func _get_configuration_warnings():
 	var valid_child_warning = ["First child must be AudioStreamPlayer(2d/3d)"]
