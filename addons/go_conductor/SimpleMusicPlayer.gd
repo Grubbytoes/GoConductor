@@ -14,7 +14,11 @@ func play():
 		return
 	playing = true
 	audio_player.play(play_from_position)
-		
+
+func play_from(position: int):
+	playing = true
+	play_from_position = position
+	audio_player.play(position)
 
 func pause():
 	play_from_position = audio_player.get_playback_position()
@@ -27,7 +31,7 @@ func stop():
 	audio_player.stop()
 
 func get_playback_position():
-	audio_player.get_playback_position()
+	return audio_player.get_playback_position()
 
 func get_bus():
 	return audio_player.get_bus()

@@ -23,3 +23,12 @@ script = ExtResource("2_ldx2e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicConductor/a"]
 stream = ExtResource("5_f68nv")
+
+[node name="new" type="Button" parent="."]
+offset_left = 308.0
+offset_top = 218.0
+offset_right = 402.0
+offset_bottom = 249.0
+text = "CUE TRACK"
+
+[connection signal="pressed" from="new" to="." method="_on_new_pressed"]

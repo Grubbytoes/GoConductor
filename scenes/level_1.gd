@@ -4,3 +4,7 @@ extends Node2D
 
 func _ready():
 	music_conductor.play()
+
+
+func _on_new_pressed():
+	music_conductor.cue_in("a")

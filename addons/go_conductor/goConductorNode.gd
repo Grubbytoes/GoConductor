@@ -8,13 +8,16 @@ var playing = false
 signal track_end
 
 func play():
-	pass
+	push_error("UNIMPLIMENTED PLAY METHOD")
+
+func play_from(position: int):
+	push_error("UNIMPLIMENTED PLAY FROM METHOD")
 
 func pause():
-	pass
+	push_error("UNIMPLIMENTED METHOD")
 	
 func stop():
-	pass
+	push_error("UNIMPLIMENTED METHOD")
 
 func restart():
 	stop()
@@ -34,13 +37,14 @@ func is_music_player(node: Node) -> bool:
 	return (is_audio_stream_player(node) or node is GoConductorNode)
 
 func get_bus() -> String:
+	push_error("UNIMPLIMENTED METHOD")
 	return ""
 
 func set_bus(bus_name: String):
-	pass
+	push_error("UNIMPLIMENTED METHOD")
 
 func get_playback_position():
-	pass
+	push_error("UNIMPLIMENTED METHOD")
 
 func get_play_from_position():
 	return play_from_position

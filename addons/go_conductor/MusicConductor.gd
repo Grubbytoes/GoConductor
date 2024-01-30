@@ -17,6 +17,16 @@ func play():
 
 func on_lead_track_end():
 	print("track ended")
+	
+func cue_in(track_name: String):
+	var track = tracks.get(track_name)
+	var position = lead.get_playback_position()
+	print(position)
+	track.play_from(position)
+
+func cue_out(track_name: String):
+	var track = tracks.get(track_name)
+	track.stop()
 
 func _get_configuration_warnings():
 	var warning = []

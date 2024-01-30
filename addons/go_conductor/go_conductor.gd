@@ -7,7 +7,7 @@ const go_conductor_node = preload("goConductorNode.gd")
 const simple_music_player = preload("SimpleMusicPlayer.gd")
 const multi_music_player = preload("MultiMusicPlayer.gd")
 const music_switch = preload("MusicSwitch.gd")
-const music_conductor = preload("MusicCOnductor.gd")
+const music_conductor = preload("MusicConductor.gd")
 
 func _enter_tree():
 	add_custom_type("GoConductorNode", "Node", go_conductor_node, go_conductor_icon)
