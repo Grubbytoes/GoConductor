@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyjm6nstocpdm"]
+
+[ext_resource type="Script" path="res://addons/go_conductor/MusicConductor.gd" id="1_4itsu"]
+[ext_resource type="Script" path="res://addons/go_conductor/SimpleMusicPlayer.gd" id="2_ldx2e"]
+[ext_resource type="AudioStream" uid="uid://c66k7eirobaes" path="res://imports/music/bass.mp3" id="3_i6qig"]
+[ext_resource type="AudioStream" uid="uid://balw6nrbk6yu1" path="res://imports/music/drums.mp3" id="4_rkt54"]
+
+[node name="level_1" type="Node2D"]
+
+[node name="MusicConductor" type="Node" parent="."]
+script = ExtResource("1_4itsu")
+
+[node name="a" type="Node" parent="MusicConductor"]
+script = ExtResource("2_ldx2e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicConductor/a"]
+stream = ExtResource("3_i6qig")
+
+[node name="b" type="Node" parent="MusicConductor"]
+script = ExtResource("2_ldx2e")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="MusicConductor/b"]
+stream = ExtResource("4_rkt54")

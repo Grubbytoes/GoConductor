@@ -5,6 +5,7 @@ class_name GoConductorNode
 
 var play_from_position: float
 var playing = false
+signal track_end
 
 func play():
 	pass
