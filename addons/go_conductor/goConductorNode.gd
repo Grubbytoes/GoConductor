@@ -3,22 +3,21 @@
 extends Node
 class_name GoConductorNode
 
-var currently_playing = null
 var play_from_position: float
 var playing = false
 
 func play():
-	currently_playing.play()
+	pass
 
 func pause():
-	currently_playing.pause()
+	pass
 	
 func stop():
-	currently_playing.stop()
+	pass
 
 func restart():
-	currently_playing.stop()
-	currently_playing.play()
+	stop()
+	play()
 
 func is_audio_stream_player(node: Node) -> bool:
 	# This is gross and I hate it
@@ -34,13 +33,13 @@ func is_music_player(node: Node) -> bool:
 	return (is_audio_stream_player(node) or node is GoConductorNode)
 
 func get_bus() -> String:
-	return currently_playing.get_bus()
+	return ""
 
 func set_bus(bus_name: String):
-	currently_playing.set_bus(bus_name)
+	pass
 
 func get_playback_position():
-	currently_playing.get_playback_position()
+	pass
 
 func get_play_from_position():
 	return play_from_position

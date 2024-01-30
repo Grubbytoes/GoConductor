@@ -7,7 +7,6 @@ var audio_player
 
 func _ready():
 	audio_player = get_child(0)
-	currently_playing = audio_player
 
 func play():
 	if playing:

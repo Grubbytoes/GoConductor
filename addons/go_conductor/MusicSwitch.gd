@@ -8,16 +8,16 @@ enum Transition {CROSSFADE, FADE_IN_OUT, CUT}
 @export var transition: Transition
 @export var transition_time: float
 var audio_ids = {}
-# var currently_playing: GoConductorNode
+var currently_playing: GoConductorNode
 
 func play():
-	if currently_playing != null: super.play()
+	if currently_playing != null: currently_playing.play()
 
 func pause():
-	if currently_playing != null: super.pause()
+	if currently_playing != null: currently_playing.pause()
 
 func stop():
-	if currently_playing != null: super.stop()
+	if currently_playing != null: currently_playing.stop()
 
 func cue(track_name: String):
 	# Find the new track by name
