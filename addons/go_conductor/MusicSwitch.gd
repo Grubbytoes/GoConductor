@@ -11,12 +11,15 @@ var audio_ids = {}
 var currently_playing: GoConductorNode
 
 func play():
+	super.play()
 	if currently_playing != null: currently_playing.play()
 
 func pause():
+	super.pause()
 	if currently_playing != null: currently_playing.pause()
 
 func stop():
+	super.stop()
 	if currently_playing != null: currently_playing.stop()
 
 func cue(track_name: String):

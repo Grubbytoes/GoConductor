@@ -18,7 +18,7 @@ func play():
 func play_from(position: int):
 	playing = true
 	play_from_position = position
-	audio_player.play(position)
+	audio_player.play()
 
 func pause():
 	play_from_position = audio_player.get_playback_position()
@@ -31,7 +31,9 @@ func stop():
 	audio_player.stop()
 
 func get_playback_position():
-	return audio_player.get_playback_position()
+	var playback_position = audio_player.get_playback_position() 
+	playback_position += AudioServer.get_time_to_next_mix()
+	return playback_position
 
 func get_bus():
 	return audio_player.get_bus()

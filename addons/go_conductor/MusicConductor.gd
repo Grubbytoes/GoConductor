@@ -6,6 +6,7 @@ class_name MusicConductor
 var config_ok
 var currently_playing: Array[GoConductorNode]
 var lead: GoConductorNode
+var t: float = 0.0
 
 func _ready():
 	update_tracks()
@@ -13,6 +14,7 @@ func _ready():
 	lead.track_end.connect(on_lead_track_end)
 
 func play():
+	super.play()
 	lead.play()
 
 func on_lead_track_end():
@@ -20,13 +22,15 @@ func on_lead_track_end():
 	
 func cue_in(track_name: String):
 	var track = tracks.get(track_name)
-	var position = lead.get_playback_position()
-	print(position)
+	var position = t
 	track.play_from(position)
 
 func cue_out(track_name: String):
 	var track = tracks.get(track_name)
 	track.stop()
+
+func _process(delta):
+	if playing: t += delta
 
 func _get_configuration_warnings():
 	var warning = []

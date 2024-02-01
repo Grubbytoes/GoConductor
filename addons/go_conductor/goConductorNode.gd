@@ -8,16 +8,20 @@ var playing = false
 signal track_end
 
 func play():
-	push_error("UNIMPLIMENTED PLAY METHOD")
+	playing = true
+	# push_error("UNIMPLIMENTED PLAY METHOD")
 
 func play_from(position: int):
-	push_error("UNIMPLIMENTED PLAY FROM METHOD")
+	playing = true
+	# push_error("UNIMPLIMENTED PLAY FROM METHOD")
 
 func pause():
-	push_error("UNIMPLIMENTED METHOD")
+	playing = false
+	# push_error("UNIMPLIMENTED METHOD")
 	
 func stop():
-	push_error("UNIMPLIMENTED METHOD")
+	playing = false
+	# push_error("UNIMPLIMENTED METHOD")
 
 func restart():
 	stop()
