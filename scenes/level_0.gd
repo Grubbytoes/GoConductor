@@ -32,3 +32,7 @@ func _on_change_pressed():
 
 func _on_fade_to_drums_pressed():
 	music.cue("drums")
+
+
+func _on_fade_to_multi_pressed():
+	music.cue("multi")

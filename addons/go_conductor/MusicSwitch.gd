@@ -24,7 +24,7 @@ func stop():
 
 func cue(track_name: String):
 	# Find the new track by name
-	var new_track = tracks.get(track_name)
+	var new_track = find_track(track_name)
 	
 	if new_track == null or new_track == currently_playing:
 		return false
