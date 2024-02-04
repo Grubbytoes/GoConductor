@@ -73,12 +73,14 @@ script = ExtResource("2_whcng")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/drums"]
 stream = ExtResource("4_41rcc")
+bus = &"Music"
 
 [node name="bass" type="Node" parent="music"]
 script = ExtResource("2_whcng")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/bass"]
 stream = ExtResource("5_d7iwc")
+bus = &"Music"
 
 [node name="multi" type="Node" parent="music"]
 script = ExtResource("6_44cn1")
@@ -88,12 +90,14 @@ script = ExtResource("2_whcng")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="music/multi/b"]
 stream = ExtResource("7_4u4ii")
+bus = &"Music"
 
 [node name="a" type="Node" parent="music/multi"]
 script = ExtResource("2_whcng")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/multi/a"]
 stream = ExtResource("8_6su6c")
+bus = &"Music"
 
 [connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]

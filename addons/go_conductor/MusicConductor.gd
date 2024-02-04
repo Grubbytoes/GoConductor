@@ -45,6 +45,13 @@ func cue_out(track_name: String):
 	var track = find_track(track_name)
 	track.stop()
 
+func get_bus() -> String:
+	return lead.get_bus()
+
+func set_bus(bus_name: String):
+	for track in get_all_tracks():
+		track.set_bus(bus_name)
+
 func _get_configuration_warnings():
 	var warning = []
 	if get_child_count() < 1:
