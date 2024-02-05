@@ -7,7 +7,7 @@ var config_ok
 var currently_playing: Array[GoConductorNode]
 var lead: GoConductorNode
 var t: float = 0.0
-var fade_duration = 1.0
+var attack = 0.5
 
 func _ready():
 	# Fill the dictionary with the current tracks
@@ -36,14 +36,9 @@ func stop():
 func on_lead_track_end():
 	print("track ended")
 	
-func cue_in(track_name: String):
-	var track = find_track(track_name)
-	var position = lead.get_playback_position()
-	track.play_from(position)
-
-func cue_out(track_name: String):
-	var track = find_track(track_name)
-	track.stop()
+func cue_track(track_name: String, play_track = true) -> void:
+	var track: GoConductorNode = find_track(track_name)
+	track.mute(!play_track, attack)
 
 func get_bus() -> String:
 	return lead.get_bus()
