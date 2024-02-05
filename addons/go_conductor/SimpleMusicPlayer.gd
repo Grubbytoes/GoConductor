@@ -4,11 +4,13 @@ class_name SimpleMusicPlayer
 extends GoConductorNode
 
 var audio_player
+@export var loop = true
 
 func _ready():
 	audio_player = get_child(0)
 	audio_player.finished.connect(on_audio_player_finished)
 
+# TODO I don't like this they don't impliment the super rule
 func play():
 	if playing:
 		return
@@ -42,7 +44,8 @@ func set_bus(new_bus: String):
 	audio_player.set_bus(new_bus)
 
 func on_audio_player_finished():
-	audio_player.play()
+	if loop:
+		audio_player.play()
 	track_end.emit()
 
 func _get_configuration_warnings():

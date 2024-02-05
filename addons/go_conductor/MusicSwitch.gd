@@ -14,6 +14,10 @@ func play():
 	super.play()
 	if currently_playing != null: currently_playing.play()
 
+func play_from(position: int):
+	super.play_from(position)
+	currently_playing.play_from(position)
+
 func pause():
 	super.pause()
 	if currently_playing != null: currently_playing.pause()

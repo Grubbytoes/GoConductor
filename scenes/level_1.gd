@@ -5,5 +5,8 @@ extends Node2D
 func _ready():
 	music_conductor.play()
 
-func _on_new_pressed():
-	music_conductor.cue_in("a")
+func _on_button_a_toggled(button_pressed):
+	music_conductor.cue()
+
+func _on_button_b_toggled(button_pressed):
+	pass # Replace with function body.

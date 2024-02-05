@@ -7,22 +7,27 @@ var play_from_position: float
 var playing = false
 signal track_end
 
+# The ONLY functionality that these methods have implimented at this level is handeling the 'playing' flag, as this is the only thing that all HoConductorNodes will have in common
+# All others will act differently depending on what the class is for, but a call to super should be included in all to ensure that 'playing' behaves consistently. 
+# Think of these as abstract methods. 
+# PLAY
+# PLAY FROM
+# PAUSE
+# STOP
 func play():
 	playing = true
-	# push_error("UNIMPLIMENTED PLAY METHOD")
 
 func play_from(position: int):
 	playing = true
-	# push_error("UNIMPLIMENTED PLAY FROM METHOD")
 
 func pause():
 	playing = false
-	# push_error("UNIMPLIMENTED METHOD")
 	
 func stop():
 	playing = false
-	# push_error("UNIMPLIMENTED METHOD")
 
+# The restart function should be as simple as stoping and starting again instantly, in most sub classes it shouldn't need its own override,
+# so long as the above four are implimented properly
 func restart():
 	stop()
 	play()

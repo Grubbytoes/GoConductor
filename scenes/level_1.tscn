@@ -12,23 +12,33 @@ script = ExtResource("1_83bpc")
 [node name="MusicConductor" type="Node" parent="."]
 script = ExtResource("1_4itsu")
 
-[node name="b" type="Node" parent="MusicConductor"]
-script = ExtResource("2_ldx2e")
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="MusicConductor/b"]
-stream = ExtResource("4_r73un")
-
 [node name="a" type="Node" parent="MusicConductor"]
 script = ExtResource("2_ldx2e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicConductor/a"]
 stream = ExtResource("5_f68nv")
 
-[node name="new" type="Button" parent="."]
-offset_left = 308.0
-offset_top = 218.0
-offset_right = 402.0
-offset_bottom = 249.0
-text = "CUE TRACK"
+[node name="buttonA" type="CheckButton" parent="MusicConductor/a"]
+offset_left = 128.0
+offset_top = 128.0
+offset_right = 234.0
+offset_bottom = 159.0
+button_pressed = true
+text = "Track B"
 
-[connection signal="pressed" from="new" to="." method="_on_new_pressed"]
+[node name="b" type="Node" parent="MusicConductor"]
+script = ExtResource("2_ldx2e")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="MusicConductor/b"]
+stream = ExtResource("4_r73un")
+
+[node name="buttonB" type="CheckButton" parent="MusicConductor/b"]
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 234.0
+offset_bottom = 95.0
+button_pressed = true
+text = "Track A"
+
+[connection signal="toggled" from="MusicConductor/a/buttonA" to="." method="_on_button_a_toggled"]
+[connection signal="toggled" from="MusicConductor/b/buttonB" to="." method="_on_button_b_toggled"]
