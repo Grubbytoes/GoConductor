@@ -2,7 +2,7 @@ using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
 
-public partial class GcMusicPlayer : Node
+public partial class GcMusicPlayer : Node, IMusicController
 {
     private bool _playing;
     private float _gain;
@@ -48,7 +48,7 @@ public partial class GcMusicPlayer : Node
         Play();
     }
 
-    public void PlayPause()
+    public void TogglePause()
     {
         if (Playing)
         {
