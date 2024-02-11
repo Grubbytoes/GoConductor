@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scenes/level_0.gd" id="1_51ndj"]
 [ext_resource type="Script" path="res://addons/go_conductor/MusicSwitch.gd" id="2_e1xkh"]
 [ext_resource type="Script" path="res://addons/go_conductor/SimpleMusicPlayer.gd" id="2_whcng"]
-[ext_resource type="AudioStream" uid="uid://balw6nrbk6yu1" path="res://imports/music/drums.mp3" id="4_41rcc"]
-[ext_resource type="AudioStream" uid="uid://c66k7eirobaes" path="res://imports/music/bass.mp3" id="5_d7iwc"]
+[ext_resource type="AudioStream" uid="uid://balw6nrbk6yu1" path="res://imports/music/ebm-song/drums.mp3" id="4_41rcc"]
+[ext_resource type="AudioStream" uid="uid://c66k7eirobaes" path="res://imports/music/ebm-song/bass.mp3" id="5_d7iwc"]
 [ext_resource type="Script" path="res://addons/go_conductor/MusicConductor.gd" id="6_44cn1"]
-[ext_resource type="AudioStream" uid="uid://cjdmgykpg0ut7" path="res://imports/music/backing.mp3" id="7_4u4ii"]
-[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/melody.mp3" id="8_6su6c"]
+[ext_resource type="AudioStream" uid="uid://cjdmgykpg0ut7" path="res://imports/music/tangerine-song/backing.mp3" id="7_4u4ii"]
+[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/tangerine-song/melody.mp3" id="8_6su6c"]
 
 [node name="Level0" type="Node2D"]
 script = ExtResource("1_51ndj")
