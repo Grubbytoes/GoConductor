@@ -2,7 +2,7 @@ using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
 
-public partial class GcMusicPlayer : Node, IMusicController
+public partial class GcMusicNode : Node, IMusicController
 {
     private bool _playing;
     private float _gain;

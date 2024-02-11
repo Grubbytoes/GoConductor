@@ -1,5 +1,5 @@
 extends Node2D
-@onready var node = $Node
+@onready var node = $Switch
 
 func _ready():
 	node.Play()

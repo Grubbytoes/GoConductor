@@ -2,7 +2,7 @@
 
 namespace GoConductorPlugin.addons.go_conductor__;
 
-public partial class GcMusicTrack : GcMusicPlayer
+public partial class MusicTrack : GcMusicNode
 {
     private AudioStreamPlayer AudioPlayer { get; set; }
 
