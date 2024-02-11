@@ -4,7 +4,8 @@ class_name SimpleMusicPlayer
 extends GoConductorNode
 
 var audio_player
-var volume_db = 0.0 # TODO
+# Represents the ideal volume of the track, as set in the editor
+var volume_db_at_ready
 @export var loop = true
 
 func mute(muted = true, attack = 0.0):
@@ -63,9 +64,16 @@ func get_bus():
 func set_bus(new_bus: String):
 	audio_player.set_bus(new_bus)
 
+# Sets the value of the audio_player's volume equal to it's value at ready
+# Usefull for fades, tweens etc.
+func reset_volume_db():
+
+
 func set_volume_db(val: float):
-	volume_db = val
 	audio_player.set_volume_db(val)
+
+func get_volume_db():
+	return audio_player.get_volume_db()
 
 func on_audio_player_finished():
 	if loop:
@@ -82,4 +90,5 @@ func _get_configuration_warnings():
 
 func _ready():
 	audio_player = get_child(0)
+	volume_db_at_ready = audio_player.get_volume_db
 	audio_player.finished.connect(on_audio_player_finished)
