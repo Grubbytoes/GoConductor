@@ -1,41 +1,42 @@
 using Godot;
-using System;
 
-public  abstract partial class MusicPlayer : Node
+namespace GoConductorPlugin.addons.go_conductor__;
+
+public partial class GcMusicPlayer : Node
 {
     private bool _playing;
     private float _gain;
     private float _playHead;
 
-    private bool Playing
+    public bool Playing
     {
         get => _playing;
         set => _playing = value;
     }
 
-    private float Gain
+    public float Gain
     {
         get => _gain;
         set => _gain = value;
     }
 
-    private float PlayHead
+    public float PlayHead
     {
         get => _playHead;
         set => _playHead = value;
     }
 
-    public void Play()
+    public virtual void Play()
     {
         Playing = true;
     }
 
-    public void Pause()
+    public virtual void Pause()
     {
         Playing = false;
     }
 
-    public void Stop()
+    public virtual void Stop()
     {
         Playing = false;
         PlayHead = 0;
@@ -45,5 +46,17 @@ public  abstract partial class MusicPlayer : Node
     {
         Stop(); 
         Play();
+    }
+
+    public void PlayPause()
+    {
+        if (Playing)
+        {
+            Pause();
+        }
+        else
+        {
+            Play();
+        }
     }
 }

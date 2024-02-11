@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2wuvinppqleb"]
+[gd_scene load_steps=4 format=3 uid="uid://b2wuvinppqleb"]
 
-[ext_resource type="Script" path="res://addons/go_conductor_#/MusicPlayer.cs" id="1_83jmk"]
+[ext_resource type="Script" path="res://scenes/#1.gd" id="1_2rbqh"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/GcMusicTrack.cs" id="1_uohgs"]
+[ext_resource type="AudioStream" uid="uid://c66k7eirobaes" path="res://imports/music/ebm-song/bass.mp3" id="3_7kd7m"]
 
 [node name="#1" type="Node2D"]
+script = ExtResource("1_2rbqh")
 
 [node name="Node" type="Node" parent="."]
-script = ExtResource("1_83jmk")
+script = ExtResource("1_uohgs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Node"]
+stream = ExtResource("3_7kd7m")
