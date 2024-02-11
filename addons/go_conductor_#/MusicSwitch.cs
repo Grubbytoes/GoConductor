@@ -38,7 +38,7 @@ public partial class MusicSwitch: MultiMusicPlayer
         GcMusicNode newTrack = GetTrack(trackName);
         
         // Exit if new track is null
-        if (newTrack.Equals(null))
+        if (newTrack == null)
         {
             return false;
         }
@@ -49,7 +49,7 @@ public partial class MusicSwitch: MultiMusicPlayer
         }
         
         // Les just do a hard cut for now
-        CurrentlyPlaying.Stop();
+        CurrentlyPlaying?.Stop();
         CurrentlyPlaying = newTrack;
         CurrentlyPlaying.Restart();
         
