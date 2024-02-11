@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://addons/go_conductor/MusicConductor.gd" id="1_4itsu"]
 [ext_resource type="Script" path="res://scenes/level_1.gd" id="1_83bpc"]
 [ext_resource type="Script" path="res://addons/go_conductor/SimpleMusicPlayer.gd" id="2_ldx2e"]
-[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/tangerine-song/melody.mp3" id="4_iamv6"]
-[ext_resource type="AudioStream" uid="uid://cjdmgykpg0ut7" path="res://imports/music/tangerine-song/backing.mp3" id="5_kdf0u"]
+[ext_resource type="AudioStream" uid="uid://cjdmgykpg0ut7" path="res://imports/music/backing.mp3" id="4_r73un"]
+[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/melody.mp3" id="5_f68nv"]
 
 [node name="level_1" type="Node2D"]
 script = ExtResource("1_83bpc")
@@ -16,7 +16,7 @@ script = ExtResource("1_4itsu")
 script = ExtResource("2_ldx2e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicConductor/a"]
-stream = ExtResource("4_iamv6")
+stream = ExtResource("5_f68nv")
 
 [node name="buttonA" type="CheckButton" parent="MusicConductor/a"]
 offset_left = 128.0
@@ -30,7 +30,7 @@ text = "Track B"
 script = ExtResource("2_ldx2e")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="MusicConductor/b"]
-stream = ExtResource("5_kdf0u")
+stream = ExtResource("4_r73un")
 
 [node name="buttonB" type="CheckButton" parent="MusicConductor/b"]
 offset_left = 128.0

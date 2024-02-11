@@ -34,8 +34,7 @@ func stop():
 		track.stop()	
 	
 func on_lead_track_end():
-	for track in get_all_tracks():
-		track.restart()
+	print("track ended")
 	
 func cue_track(track_name: String, play_track = true) -> void:
 	var track: GoConductorNode = find_track(track_name)

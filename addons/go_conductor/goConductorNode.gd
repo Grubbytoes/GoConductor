@@ -43,10 +43,7 @@ func is_audio_stream_player(node: Node) -> bool:
 	return false
 
 func is_music_player(node: Node) -> bool:
-	var is_gcn = node is GoConductorNode
-	var is_asp = is_audio_stream_player(node)
-	
-	return (is_gcn or is_asp)
+	return (is_audio_stream_player(node) or node is GoConductorNode)
 
 func get_bus() -> String:
 	push_error("UNIMPLIMENTED METHOD")

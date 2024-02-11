@@ -9,7 +9,6 @@ enum Transition {CROSSFADE, FADE_IN_OUT, CUT}
 @export var transition_time: float
 var audio_ids = {}
 var currently_playing: GoConductorNode
-var _transition_in_progress = false
 
 func play():
 	super.play()
@@ -44,45 +43,64 @@ func cue(track_name: String):
 				fade_in_out(new_track)
 			Transition.CUT, _: 
 				cut(new_track)
-	else:
-		currently_playing = new_track
-
+	
+	# Set currently playing to the new track
+	currently_playing = new_track
+	print("changed currently playing")
 	return true
 
 func crossfade(new_track):
-	# First, DEFINITIVE variables for ingoing and outgoing tracks
-	# Then update currently_playing
-	var outgoing = currently_playing
-	var incomming = new_track
-	currently_playing = new_track
-	_transition_in_progress = true
-
-	# Set the new track to a lower volume, 30db lower than 'current', and play
-	incomming.set_volume_db(incomming.volume_db_at_ready-30)
-	incomming.play()
-
-	# Instance our tweens
-	var incomming_tween: Tween = create_tween()
-	var outgoing_tween: Tween = create_tween()
-
-	# Add tweeners and callback to incoming
-	incomming_tween.tween_property(incomming.audio_player, "volume_db", 30, transition_time).as_relative()
-	incomming_tween.tween_callback(func (): _transition_in_progress = false)
-
-	# Add tweeners and callback to outgoing
-	outgoing_tween.tween_property(outgoing.audio_player, "volume_db", -30, transition_time).as_relative()
-	outgoing_tween.tween_callback(outgoing.stop)
-	outgoing_tween.tween_callback(outgoing.reset_volume_db)
-
-	# start both
-	incomming_tween.play()
-	outgoing_tween.play()
-
-
+	# Save the currently playing track as a variable as it will be reassigned over the course of the tween
+	var prev_track = currently_playing
+	# Create two new busses
+	# Bus a for old music fading out, at position i
+	# Bus b for new music fading in, at position j 
+	AudioServer.add_bus()
+	var i = AudioServer.bus_count-1
+	AudioServer.add_bus()
+	var j = i + 1
+	var original_bus = prev_track.get_bus()
+	var bus_a = AudioServer.get_bus_name(i)
+	var bus_b = AudioServer.get_bus_name(j)
+	# Send new busses to the original_bus
+	AudioServer.set_bus_send(i, original_bus)
+	AudioServer.set_bus_send(j, original_bus)
+	
+	# Add amps to new busses, to be used for fading
+	# Amp B will start at -30db
+	var amp_a = AudioEffectAmplify.new()
+	var amp_b = AudioEffectAmplify.new()
+	amp_b.set_volume_db(-30)
+	AudioServer.add_bus_effect(i, amp_a)
+	AudioServer.add_bus_effect(j, amp_b)
+	
+	# Direct tracks to their respective busses
+	# and start track B
+	prev_track.set_bus(bus_a)
+	new_track.set_bus(bus_b)
+	new_track.play()
+	
+	# Set up the tween
+	var fade_tween = create_tween()
+	fade_tween.tween_property(amp_a, "volume_db", -30, transition_time)
+	fade_tween.parallel().tween_property(amp_b, "volume_db", 0, transition_time)
+	
+	# Add the tween callbacks (what happens after they stop)
+	# Stop track a, remove the temp busses 
+	var cleanup = func ():
+		prev_track.stop()
+		AudioServer.set_bus_mute(i, true)
+		AudioServer.remove_bus(i)
+		AudioServer.remove_bus(j-1)
+	fade_tween.tween_callback(cleanup)
+	print("transition cleanup done")
 
 func fade_in_out(new_track):
 	pass
 
 func cut(new_track):
 	pass
+
+func _ready():
+	update_tracks()
 		

@@ -20,16 +20,12 @@ func find_track(track_name: String) -> GoConductorNode:
 # Updates the dictionary of tracks to be all valid children of the node
 func update_tracks():
 	for child in get_children():
-		print(child)
 		if is_music_player(child):
 			_tracks[child.name] = child
 
 # A function to return an array of all tracks
 func get_all_tracks():
 	return _tracks.values()
-
-func _ready():
-	update_tracks()
 
 func _get_configuration_warnings():
 	if _tracks.is_empty():
