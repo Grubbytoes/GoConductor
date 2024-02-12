@@ -7,7 +7,8 @@ public partial class MusicSwitch: MultiMusicPlayer
 {
     public GcMusicNode CurrentlyPlaying { get; private set; }
     public bool RestartOnRecue { get; set; }
-
+    public override float PlaybackPosition => CurrentlyPlaying.PlaybackPosition;
+    
     public override void Play()
     {
         base.Play();
@@ -55,4 +56,6 @@ public partial class MusicSwitch: MultiMusicPlayer
         // If we got this far, then we succeeded, wooo!!
         return true;
     }
+
+
 }

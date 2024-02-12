@@ -6,7 +6,6 @@ namespace GoConductorPlugin.addons.go_conductor__;
 public partial class MusicConductor : MultiMusicPlayer
 {
     private List<GcMusicNode> TracksCurrentlyPlaying { get; set; }
-
     // Basically the first element in TracksCurrentlyPlaying is the lead
     public GcMusicNode LeadTrack
     {
@@ -19,7 +18,8 @@ public partial class MusicConductor : MultiMusicPlayer
         }
         private set => TracksCurrentlyPlaying.Insert(0, value);
     }
-
+    public override float PlaybackPosition => LeadTrack.PlaybackPosition;
+    
     public override void _Ready()
     {
         base._Ready();
