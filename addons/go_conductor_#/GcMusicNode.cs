@@ -2,11 +2,13 @@ using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
 
-public partial class GcMusicNode : Node, IMusicController
+public abstract partial class GcMusicNode : Node, IMusicController
 {
     private bool _playing;
     private float _gain;
     private float _playHead;
+    
+    public virtual float PlaybackPosition { get; private set; }
 
     public bool Playing
     {
