@@ -46,13 +46,33 @@ public partial class MusicConductor : MultiMusicPlayer
         // Do we need to play the track?
         if (Playing)
         {
-            trackIn.PlayFrom(LeadTrack.PlaybackPosition);
+            trackIn.PlayFrom(PlaybackPosition);
         }
         else
         {
-            trackIn.PlayHead = LeadTrack.PlaybackPosition;
+            trackIn.PlayHead = PlaybackPosition;
         }
 
+        return true;
+    }
+
+    /// <summary>
+    /// Removes the track, by name, from the arrangement
+    /// </summary>
+    /// <param name="trackName">Track name</param>
+    /// <returns>True if found and removed from arrangement successfully</returns>
+    public bool CueOut(string trackName)
+    {
+        GcMusicNode trackOut = GetTrack(trackName);
+        int trackOutIdx = TracksCurrentlyPlaying.IndexOf(trackOut);
+
+        if (trackOutIdx < 0)
+        {
+            return false;
+        }
+        
+        trackOut.Stop();
+        TracksCurrentlyPlaying.RemoveAt(trackOutIdx);
         return true;
     }
 
