@@ -6,7 +6,6 @@ namespace GoConductorPlugin.addons.go_conductor__;
 public partial class MusicSwitch: MultiMusicPlayer
 {
     public GcMusicNode CurrentlyPlaying { get; private set; }
-    [Export]
     public bool RestartOnRecue { get; set; }
 
     public override void Play()

@@ -34,9 +34,10 @@ public partial class MusicConductor : MultiMusicPlayer
     public bool CueIn(string trackName)
     {
         GcMusicNode trackIn = GetTrack(trackName);
-
-        if (trackIn == null)
+        
+        if (trackIn == null || TracksCurrentlyPlaying.Contains(trackIn) )
         {
+            // Track not found or track already playing
             return false;
         }
         
@@ -45,8 +46,11 @@ public partial class MusicConductor : MultiMusicPlayer
         // Do we need to play the track?
         if (Playing)
         {
-            GD.Print("UNIMPLIMENTED LMAO");
-            // TODO
+            trackIn.PlayFrom(LeadTrack.PlaybackPosition);
+        }
+        else
+        {
+            trackIn.PlayHead = LeadTrack.PlaybackPosition;
         }
 
         return true;

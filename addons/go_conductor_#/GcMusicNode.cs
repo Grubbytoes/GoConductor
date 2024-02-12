@@ -7,8 +7,17 @@ public abstract partial class GcMusicNode : Node, IMusicController
     private bool _playing;
     private float _gain;
     private float _playHead;
-    
-    public virtual float PlaybackPosition { get; private set; }
+    private float _playbackPosition;
+
+    public virtual float PlaybackPosition
+    {
+        get
+        {
+            GD.PushWarning("UNIMPLEMENTED PLAYBACK POSITION GET");
+            return _playbackPosition;
+        }
+        private set => _playbackPosition = value;
+    }
 
     public bool Playing
     {
@@ -47,6 +56,13 @@ public abstract partial class GcMusicNode : Node, IMusicController
     public void Restart()
     {
         Stop(); 
+        Play();
+    }
+    
+    public void PlayFrom(float position)
+    {
+        Stop();
+        PlayHead = position;
         Play();
     }
 

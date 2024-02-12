@@ -10,6 +10,7 @@ public partial class MusicTrack : GcMusicNode
 
     public override void Play()
     {
+        if (Playing) {return;}
         base.Play();
         AudioPlayer.Play(PlayHead);
     }
