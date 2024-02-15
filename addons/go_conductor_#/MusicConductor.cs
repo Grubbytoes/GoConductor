@@ -18,8 +18,19 @@ public partial class MusicConductor : MultiMusicPlayer
         }
         private set => TracksCurrentlyPlaying.Insert(0, value);
     }
-    public override float PlaybackPosition => LeadTrack.PlaybackPosition;
 
+    public override float PlaybackPosition
+    {
+        get => LeadTrack.PlaybackPosition;
+        set
+        {
+            foreach (GcMusicNode t in TracksCurrentlyPlaying)
+            {
+                t.PlaybackPosition = value;
+            }
+        }
+    }
+    
     public override void _EnterTree()
     {
         base._EnterTree();

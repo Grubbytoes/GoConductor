@@ -16,7 +16,7 @@ public abstract partial class GcMusicNode : Node, IMusicController
             GD.PushWarning("UNIMPLEMENTED PLAYBACK POSITION GET");
             return _playbackPosition;
         }
-        private set => _playbackPosition = value;
+        set => _playbackPosition = value;
     }
 
     public bool Playing

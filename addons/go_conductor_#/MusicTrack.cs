@@ -6,7 +6,12 @@ public partial class MusicTrack : GcMusicNode
 {
     private AudioStreamPlayer AudioPlayer { get; set; }
 
-    public override float PlaybackPosition => AudioPlayer.GetPlaybackPosition();
+    public override float PlaybackPosition
+    {
+        get { return AudioPlayer.GetPlaybackPosition(); }
+        set { AudioPlayer.Seek(value); }
+    }
+
 
     public override void Play()
     {

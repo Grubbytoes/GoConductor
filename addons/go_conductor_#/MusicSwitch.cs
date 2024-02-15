@@ -7,7 +7,12 @@ public partial class MusicSwitch: MultiMusicPlayer
 {
     public GcMusicNode CurrentlyPlaying { get; private set; }
     public bool RestartOnRecue { get; set; }
-    public override float PlaybackPosition => CurrentlyPlaying.PlaybackPosition;
+
+    public override float PlaybackPosition
+    {
+        get => CurrentlyPlaying.PlaybackPosition;
+        set => CurrentlyPlaying.PlaybackPosition = value;
+    }
     
     public override void Play()
     {
