@@ -5,6 +5,7 @@ namespace GoConductorPlugin.addons.go_conductor__;
 public partial class MusicTrack : GcMusicNode
 {
     private AudioStreamPlayer AudioPlayer { get; set; }
+    [Export] public float Attack = 0.2f;
 
     public override float PlaybackPosition
     {
