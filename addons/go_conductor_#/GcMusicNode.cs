@@ -65,7 +65,10 @@ public abstract partial class GcMusicNode : Node, IMusicController
         PlayHead = position;
         Play();
     }
-
+    
+    /// <summary>
+    /// Pauses if playing, plays if paused
+    /// </summary>
     public void TogglePause()
     {
         if (Playing)
@@ -76,5 +79,13 @@ public abstract partial class GcMusicNode : Node, IMusicController
         {
             Play();
         }
+    }
+
+    /// <summary>
+    /// Alias for TogglePause
+    /// </summary>
+    public void TogglePlay()
+    {
+        TogglePause();
     }
 }
