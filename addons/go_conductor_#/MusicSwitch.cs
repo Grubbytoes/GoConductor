@@ -17,6 +17,7 @@ public partial class MusicSwitch: MultiMusicPlayer
     public override void Play()
     {
         base.Play();
+        DebugPrint("playing " + CurrentlyPlaying.Name);
         CurrentlyPlaying.Play();
     }
 
@@ -47,16 +48,21 @@ public partial class MusicSwitch: MultiMusicPlayer
         {
             return false;
         }
+        
         // Exit if same track and not restart on recue
         if (newTrack.Equals(CurrentlyPlaying) && !RestartOnRecue)
         {
             return false;
         }
         
-        // Les just do a hard cut for now
+        // Stop the previous track
         CurrentlyPlaying?.Stop();
+        
+        // Set the marker to the new track
         CurrentlyPlaying = newTrack;
-        CurrentlyPlaying.Restart();
+        
+        // Continue playing, if we already were
+        if (Playing){CurrentlyPlaying.Play();}
         
         // If we got this far, then we succeeded, wooo!!
         return true;

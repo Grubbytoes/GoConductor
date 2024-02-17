@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
 
@@ -33,15 +34,23 @@ public partial class MusicTrack : GcMusicNode
         // Not playing from the start (ie after pausing)?
         if (PlaybackPosition > 0.0)
         {
-            // Fade the track back in
-            var fadeIn = CreateTween();
+            // Lower the tracks volume and play
             AudioPlayer.VolumeDb = FinalTrackVolume - 30;
+            AudioPlayer.Play(PlaybackPosition);
+            
+            // Get the tween going
+            var fadeIn = CreateTween();
             fadeIn.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume, Attack);
+        }
+        else
+        {
+            // Just play from the start
+            DebugPrint("playing from the start");
+            AudioPlayer.Play();
         }
         
         // We're ready to go
         base.Play();
-        AudioPlayer.Play(PlayHead);
     }
 
     public override void Pause()

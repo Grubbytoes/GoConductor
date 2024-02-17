@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2pfhp1rqhoab"]
+
+[ext_resource type="Script" path="res://scenes/test.gd" id="1_xd0n6"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicSwitch.cs" id="2_536u4"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicConductor.cs" id="2_gj8g8"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicTrack.cs" id="3_ygbfp"]
+[ext_resource type="AudioStream" uid="uid://c66k7eirobaes" path="res://imports/music/ebm-song/bass.mp3" id="4_0kk6n"]
+[ext_resource type="AudioStream" uid="uid://balw6nrbk6yu1" path="res://imports/music/ebm-song/drums.mp3" id="5_d8gqd"]
+[ext_resource type="AudioStream" uid="uid://dfstbh5qrs2w8" path="res://imports/music/Northstar.mp3" id="7_uvpc3"]
+
+[node name="test" type="Node2D"]
+script = ExtResource("1_xd0n6")
+
+[node name="musicSwitch" type="Node" parent="."]
+script = ExtResource("2_536u4")
+
+[node name="star" type="Node" parent="musicSwitch"]
+script = ExtResource("3_ygbfp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="musicSwitch/star"]
+stream = ExtResource("7_uvpc3")
+
+[node name="ebm" type="Node" parent="musicSwitch"]
+script = ExtResource("2_gj8g8")
+
+[node name="bass" type="Node" parent="musicSwitch/ebm"]
+script = ExtResource("3_ygbfp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="musicSwitch/ebm/bass"]
+stream = ExtResource("4_0kk6n")
+
+[node name="drums" type="Node" parent="musicSwitch/ebm"]
+script = ExtResource("3_ygbfp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="musicSwitch/ebm/drums"]
+stream = ExtResource("5_d8gqd")

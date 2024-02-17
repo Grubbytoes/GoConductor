@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Added debug print for GcMusicNode&#10;&#10;also some comments">
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/indexLayout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/FileContentIndex/5ad13f09-88db-433f-be3d-2ac55829ca47.vsidx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.futdcache.v2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.suo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.metadata.v7.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.projects.v7.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/test.gd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GoConductor Plugin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GoConductor Plugin.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="gc-sharp" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2cDXrOmTp8dSxxNQbK678CCG6C4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Language Defaults&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Hugo\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Hugo\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Hugo\\AppData\\Local\\Symbols\\src&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected=".NET Executable.Player">
+    <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../../../Program Files/Godot_v4.1.1-stable_mono_win64/Godot_v4.1.1-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;C:\Users\Hugo\Documents\Code\Godot Projects\GoConductor Plugin&quot; --editor" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Player" type="RunExe" factoryName=".NET Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../../../../Program Files/Godot_v4.1.1-stable_mono_win64/Godot_v4.1.1-stable_mono_win64.exe" />
+      <option name="PROGRAM_PARAMETERS" value="--path &quot;C:\Users\Hugo\Documents\Code\Godot Projects\GoConductor Plugin&quot;" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="RUNTIME_TYPE" value="coreclr" />
+      <method v="2">
+        <option name="Build Solution" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="" />
+      <created>1707647323549</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1707647323549</updated>
+      <workItem from="1707647329451" duration="155000" />
+      <workItem from="1707647500792" duration="27000" />
+      <workItem from="1707647554378" duration="275000" />
+      <workItem from="1707647856811" duration="5413000" />
+      <workItem from="1707655143050" duration="111000" />
+      <workItem from="1707659380385" duration="1340000" />
+      <workItem from="1707695666016" duration="1097000" />
+      <workItem from="1707698069872" duration="142000" />
+      <workItem from="1707730176390" duration="2377000" />
+      <workItem from="1707732697362" duration="671000" />
+      <workItem from="1707903818648" duration="135000" />
+      <workItem from="1708015094582" duration="10000" />
+      <workItem from="1708015132207" duration="2522000" />
+      <workItem from="1708022652952" duration="1213000" />
+      <workItem from="1708034418302" duration="1868000" />
+      <workItem from="1708036455290" duration="688000" />
+      <workItem from="1708174890115" duration="5083000" />
+    </task>
+    <task id="LOCAL-00001" summary="MusicTrack Works">
+      <option name="closed" value="true" />
+      <created>1707652227501</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1707652227501</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Skeleton for conductor">
+      <option name="closed" value="true" />
+      <created>1707697577918</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707697577918</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added PlaybackPosition to GcMusicNode.cs, implimented for MusicTrack.cs">
+      <option name="closed" value="true" />
+      <created>1707697999796</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707697999796</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Monday Morning&#10;&#10;* Added PlayFrom(position)&#10;* Added PlaybackPosition&#10;* Untested implimentation of conductor&#10;* Removed [export] from RestartOnRecue">
+      <option name="closed" value="true" />
+      <created>1707731449446</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1707731449446</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implimented PlaybackPosition getters for conductor and switch">
+      <option name="closed" value="true" />
+      <created>1707731653984</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707731653984</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Conductor implemented untested">
+      <option name="closed" value="true" />
+      <created>1707732566619</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1707732566619</updated>
+    </task>
+    <task id="LOCAL-00007" summary="CONDUCTOR WORKS!!!!! I'M GONNA CUM">
+      <option name="closed" value="true" />
+      <created>1707732846807</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1707732846807</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added TogglePlay alias for TogglePause">
+      <option name="closed" value="true" />
+      <created>1708021386956</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708021386956</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added proto-skeleton for transition">
+      <option name="closed" value="true" />
+      <created>1708023050088</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708023050088</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Playback position properties changed">
+      <option name="closed" value="true" />
+      <created>1708023663064</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708023663064</updated>
+    </task>
+    <task id="LOCAL-00011" summary="omahgawd exporting properties works now&#10;&#10;For future reference, NO properties can have missing setters, even if the setters don't do anything.">
+      <option name="closed" value="true" />
+      <created>1708029032782</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708029032782</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Thursday evening 😁&#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping">
+      <option name="closed" value="true" />
+      <created>1708036193562</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708036193562</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added debug print for GcMusicNode&#10;&#10;also some comments">
+      <option name="closed" value="true" />
+      <created>1708176802912</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708176802912</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="false" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="MusicTrack Works" />
+    <MESSAGE value="Skeleton for conductor" />
+    <MESSAGE value="Added PlaybackPosition to GcMusicNode.cs, implimented for MusicTrack.cs" />
+    <MESSAGE value="Monday Morning&#10;&#10;* Added PlayFrom(position)&#10;* Added PlaybackPosition&#10;* Untested implimentation of conductor&#10;* Removed [export] from RestartOnRecue" />
+    <MESSAGE value="Implimented PlaybackPosition getters for conductor and switch" />
+    <MESSAGE value="Conductor implemented untested" />
+    <MESSAGE value="CONDUCTOR WORKS!!!!! I'M GONNA CUM" />
+    <MESSAGE value="Added TogglePlay alias for TogglePause" />
+    <MESSAGE value="Revert &quot;Added TogglePlay alias for TogglePause&quot;&#10;&#10;This reverts commit d94c8f7c" />
+    <MESSAGE value="Added proto-skeleton for transition" />
+    <MESSAGE value="Playback position properties changed" />
+    <MESSAGE value="omahgawd exporting properties works now&#10;&#10;For future reference, NO properties can have missing setters, even if the setters don't do anything." />
+    <MESSAGE value="Thursday evening &#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping" />
+    <MESSAGE value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
+  </component>
+</project>

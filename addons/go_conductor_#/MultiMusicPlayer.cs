@@ -18,9 +18,7 @@ public partial class MultiMusicPlayer : GcMusicNode
     {
         foreach (var child in GetChildren())
         {
-            GD.Print(String.Format("Now looking at child '{0}'", child.Name));
-            
-            GD.Print("  - valid!");
+            DebugPrint("adding " + child.Name);
             TrackDictionary.Add(child.Name, child as GcMusicNode);
         }
     }

@@ -1,15 +1,14 @@
-using System;
 using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
 
 public abstract partial class GcMusicNode : Node, IMusicController
 {
-    private bool _playing;
-    private float _gain;
-    private float _playHead;
     private float _playbackPosition;
 
+    /// <summary>
+    ///     Where in time the arrangement is at currently
+    /// </summary>
     public virtual float PlaybackPosition
     {
         get
@@ -20,23 +19,15 @@ public abstract partial class GcMusicNode : Node, IMusicController
         set => _playbackPosition = value;
     }
 
-    public bool Playing
-    {
-        get => _playing;
-        set => _playing = value;
-    }
+    /// <summary>
+    ///     The point in time at which the arrangement was last played from or paused at.
+    ///     Ie, where the arrangement should be playing from next time play is hit
+    /// </summary>
+    public bool Playing { get; set; }
 
-    public float Gain
-    {
-        get => _gain;
-        set => _gain = value;
-    }
+    public float Gain { get; set; }
 
-    public float PlayHead
-    {
-        get => _playHead;
-        set => _playHead = value;
-    }
+    public float PlayHead { get; set; }
 
     public virtual void Play()
     {
@@ -56,44 +47,51 @@ public abstract partial class GcMusicNode : Node, IMusicController
 
     public void Restart()
     {
-        Stop(); 
-        Play();
-    }
-    
-    // TODO This isn't working w/ MusicTrack
-    public void PlayFrom(float position)
-    {
         Stop();
-        PlayHead = position;
         Play();
     }
-    
+
     /// <summary>
-    /// Pauses if playing, plays if paused
+    ///     Pauses if playing, plays if paused
     /// </summary>
     public void TogglePause()
     {
         if (Playing)
-        {
             Pause();
-        }
         else
-        {
             Play();
-        }
+    }
+
+
+    // TODO This isn't working w/ MusicTrack
+    public virtual void PlayFrom(float position)
+    {
+        Pause();
+        seek(position);
+        Play();
     }
 
     /// <summary>
-    /// Alias for TogglePause
+    ///     Sets the play head to the given position, but does NOT change the arrangement is it is currently playing.
+    ///     IE, will be played from this position after the arrangement is next played from a state of pause/stop
+    /// </summary>
+    /// <param name="position">The position to play from</param>
+    public void seek(float position)
+    {
+        PlayHead = position;
+    }
+
+    /// <summary>
+    ///     Alias for TogglePause
     /// </summary>
     public void TogglePlay()
     {
         TogglePause();
     }
 
-    protected void DebugPrint(String message)
+    protected void DebugPrint(string message)
     {
-        String output = Name + ": - " + message;
+        var output = Name + ": - " + message;
         GD.Print(output);
     }
 }

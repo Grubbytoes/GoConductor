@@ -1,0 +1,18 @@
+Index: addons/go_conductor_#/MusicTrack.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\n\nnamespace GoConductorPlugin.addons.go_conductor__;\n\npublic partial class MusicTrack : GcMusicNode\n{\n    private AudioStreamPlayer AudioPlayer { get; set; }\n\n    public override float PlaybackPosition => AudioPlayer.GetPlaybackPosition();\n\n    public override void Play()\n    {\n        if (Playing) {return;}\n        base.Play();\n        AudioPlayer.Play(PlayHead);\n    }\n\n    public override void Pause()\n    {\n        base.Pause();\n        PlayHead = AudioPlayer.GetPlaybackPosition();\n        AudioPlayer.Stop();\n    }\n\n    public override void Stop()\n    {\n        base.Stop();\n        AudioPlayer.Stop();\n    }\n\n    public override void _Ready()\n    {\n        AudioPlayer = (AudioStreamPlayer)GetChild(0);\n        \n    }\n}
+===================================================================
+diff --git a/addons/go_conductor_#/MusicTrack.cs b/addons/go_conductor_#/MusicTrack.cs
+--- a/addons/go_conductor_#/MusicTrack.cs	
++++ b/addons/go_conductor_#/MusicTrack.cs	
+@@ -7,6 +7,9 @@
+     private AudioStreamPlayer AudioPlayer { get; set; }
+ 
+     public override float PlaybackPosition => AudioPlayer.GetPlaybackPosition();
++    public float Attack { get; set; } = 0.2f;
++    
++    
+ 
+     public override void Play()
+     {
