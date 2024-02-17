@@ -48,13 +48,22 @@ public partial class MusicTrack : GcMusicNode
     {
         base.Pause();
         PlayHead = AudioPlayer.GetPlaybackPosition();
-        AudioPlayer.Stop();
+        StopAudioPlayer();
     }
 
     public override void Stop()
     {
         base.Stop();
-        AudioPlayer.Stop();
+        StopAudioPlayer();
+    }
+    
+    // Stops Audio player after a short volume tween, nothing more, nothing less
+    // doesn't touch any variables, nothing
+    private void StopAudioPlayer()
+    {
+        var tween = CreateTween();
+        tween.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume - 30, Attack);
+        tween.TweenCallback(Callable.From(AudioPlayer.Stop));
     }
 
     // TODO

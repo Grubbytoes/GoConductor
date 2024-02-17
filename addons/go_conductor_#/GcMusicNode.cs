@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
@@ -59,6 +60,7 @@ public abstract partial class GcMusicNode : Node, IMusicController
         Play();
     }
     
+    // TODO This isn't working w/ MusicTrack
     public void PlayFrom(float position)
     {
         Stop();
@@ -87,5 +89,11 @@ public abstract partial class GcMusicNode : Node, IMusicController
     public void TogglePlay()
     {
         TogglePause();
+    }
+
+    protected void DebugPrint(String message)
+    {
+        String output = Name + ": - " + message;
+        GD.Print(output);
     }
 }

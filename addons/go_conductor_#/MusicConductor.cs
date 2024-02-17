@@ -52,12 +52,13 @@ public partial class MusicConductor : MultiMusicPlayer
     {
         GcMusicNode trackIn = GetTrack(trackName);
         
+        // Track not found or track already playing
         if (trackIn == null || TracksCurrentlyPlaying.Contains(trackIn) )
         {
-            // Track not found or track already playing
             return false;
         }
         
+        // Append track to currently playing, so we can see it later
         TracksCurrentlyPlaying.Add(trackIn);
         
         // Do we need to play the track?
