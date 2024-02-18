@@ -27,7 +27,7 @@ public abstract partial class GcMusicNode : Node, IMusicController
 
     public float Gain { get; set; }
 
-    public float PlayHead { get; set; }
+    protected float PlayHead { get; set; }
 
     public virtual void Play()
     {
@@ -66,19 +66,9 @@ public abstract partial class GcMusicNode : Node, IMusicController
     // TODO This isn't working w/ MusicTrack
     public virtual void PlayFrom(float position)
     {
-        seek(position);
+        PlayHead = position;
         Playing = false;
         Play();
-    }
-
-    /// <summary>
-    ///     Sets the play head to the given position, but does NOT change the arrangement is it is currently playing.
-    ///     IE, will be played from this position after the arrangement is next played from a state of pause/stop
-    /// </summary>
-    /// <param name="position">The position to play from</param>
-    public void seek(float position)
-    {
-        PlayHead = position;
     }
 
     /// <summary>

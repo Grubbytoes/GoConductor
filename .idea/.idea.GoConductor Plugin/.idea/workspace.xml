@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Added debug print for GcMusicNode&#10;&#10;also some comments">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scenes/test.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +26,6 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -219,7 +216,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708176802912</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me">
+      <option name="closed" value="true" />
+      <created>1708273402301</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708273402301</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,6 +264,7 @@
     <MESSAGE value="omahgawd exporting properties works now&#10;&#10;For future reference, NO properties can have missing setters, even if the setters don't do anything." />
     <MESSAGE value="Thursday evening &#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping" />
     <MESSAGE value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
+    <MESSAGE value="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me" />
   </component>
 </project>

@@ -68,7 +68,8 @@ public partial class MusicConductor : MultiMusicPlayer
         }
         else
         {
-            trackIn.PlayHead = PlaybackPosition;
+            // I changed this from playhead, if it breaks in the future
+            trackIn.PlaybackPosition = PlaybackPosition;
         }
 
         return true;

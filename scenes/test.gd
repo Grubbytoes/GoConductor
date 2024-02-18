@@ -4,8 +4,8 @@ extends Node2D
 
 
 func _ready():
-	music_switch.Cue("star")
-	music_switch.Play()
+	music_switch.Cue("ebm")
+	music_conductor.CueIn("drums")
 	
 func _process(delta):
 	if Input.is_action_just_pressed("numpad_1"): music_switch.Play()

@@ -13,17 +13,8 @@ public partial class MusicTrack : GcMusicNode
 
     public override float PlaybackPosition
     {
-        get {
-            if (Playing)
-            {
-                return AudioPlayer.GetPlaybackPosition();
-            }
-            else
-            {
-                return PlayHead;
-            }
-        }
-        set { AudioPlayer.Seek(value); }
+        get => AudioPlayer.GetPlaybackPosition();
+        set => AudioPlayer.Seek(value);
     }
 
 
@@ -32,28 +23,9 @@ public partial class MusicTrack : GcMusicNode
         // If we are already playing, return
         if (Playing) {return;}
         
-        // Not playing from the start (ie after pausing)?
-        if (PlaybackPosition > 0.0)
-        {
-            DebugPrint("playing from " + PlaybackPosition);
-            // Lower the tracks volume and play
-            AudioPlayer.VolumeDb = FinalTrackVolume - 30;
-            AudioPlayer.Play(PlaybackPosition);
-            
-            // Get the tween going
-            VolumeTween = CreateTween();
-            VolumeTween.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume, Attack);
-        }
-        else
-        {
-            // Just play from the start
-            AudioPlayer.VolumeDb = FinalTrackVolume;
-            DebugPrint("playing from the start");
-            AudioPlayer.Play();
-        }
-        
         // We're ready to go
         base.Play();
+        StartAudioPlayer();
     }
 
     public override void Pause()
@@ -73,9 +45,30 @@ public partial class MusicTrack : GcMusicNode
     // doesn't touch any variables, nothing
     private void HaltAudioPlayer()
     {
+        if (VolumeTweenInUse())
+        {
+            AudioPlayer.StreamPaused = true;
+        }
         VolumeTween = CreateTween();
         VolumeTween.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume - 30, Attack);
-        VolumeTween.TweenCallback(Callable.From(AudioPlayer.Stop));
+        VolumeTween.TweenCallback(Callable.From(()=> AudioPlayer.StreamPaused = true));
+    }
+
+    private void StartAudioPlayer()
+    {
+        // Make sure the volume's okay
+        AudioPlayer.VolumeDb = FinalTrackVolume;
+        
+        // Tween?
+        if (!VolumeTweenInUse() && PlayHead > 0)
+        {
+            AudioPlayer.VolumeDb -= 30;
+            VolumeTween = CreateTween();
+            VolumeTween.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume, Attack);
+        }
+        
+        // Start her up!
+        AudioPlayer.Play(PlayHead);
     }
 
     // TODO
@@ -95,7 +88,7 @@ public partial class MusicTrack : GcMusicNode
 
     private bool VolumeTweenInUse()
     {
-        return (VolumeTween is not null && !VolumeTween.IsRunning());
+        return (VolumeTween is not null && !VolumeTween.IsValid());
     }
 
     public override void _Ready()
