@@ -66,8 +66,8 @@ public abstract partial class GcMusicNode : Node, IMusicController
     // TODO This isn't working w/ MusicTrack
     public virtual void PlayFrom(float position)
     {
-        Pause();
         seek(position);
+        Playing = false;
         Play();
     }
 

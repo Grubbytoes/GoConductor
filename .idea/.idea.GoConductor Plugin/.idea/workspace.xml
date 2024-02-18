@@ -5,29 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Added debug print for GcMusicNode&#10;&#10;also some comments">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/FileContentIndex/5ad13f09-88db-433f-be3d-2ac55829ca47.vsidx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.futdcache.v2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.suo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.metadata.v7.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.projects.v7.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/test.gd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GoConductor Plugin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GoConductor Plugin.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

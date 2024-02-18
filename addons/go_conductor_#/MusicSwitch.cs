@@ -33,6 +33,11 @@ public partial class MusicSwitch: MultiMusicPlayer
         CurrentlyPlaying.Stop();
     }
 
+    public override void PlayFrom(float position)
+    {
+        CurrentlyPlaying.PlayFrom(position);
+    }
+
     /// <summary>
     /// Cues the song of the given name, if it exists as a child
     /// </summary>

@@ -117,7 +117,7 @@ public partial class MusicConductor : MultiMusicPlayer
         base.Stop();
         foreach (GcMusicNode t in TracksCurrentlyPlaying)
         {
-            t.Pause();
+            t.Stop();
         }
     }
 }
