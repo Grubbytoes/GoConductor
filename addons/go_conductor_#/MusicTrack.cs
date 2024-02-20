@@ -48,7 +48,9 @@ public partial class MusicTrack : GcMusicNode
         if (VolumeTweenInUse())
         {
             AudioPlayer.StreamPaused = true;
+            return;
         }
+        
         VolumeTween = CreateTween();
         VolumeTween.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume - 30, Attack);
         VolumeTween.TweenCallback(Callable.From(()=> AudioPlayer.StreamPaused = true));
@@ -74,7 +76,7 @@ public partial class MusicTrack : GcMusicNode
     // TODO
     private void TrackEnd()
     {
-        // If loop, play the track again, sam
+        // If loop, play it again, sam
         if (Loop)
         {
             AudioPlayer.Play();
@@ -95,5 +97,6 @@ public partial class MusicTrack : GcMusicNode
     {
         AudioPlayer = (AudioStreamPlayer)GetChild(0);
         FinalTrackVolume = AudioPlayer.VolumeDb;
+        AudioPlayer.Finished += TrackEnd;
     }
 }

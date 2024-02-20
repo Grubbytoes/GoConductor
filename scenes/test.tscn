@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c2pfhp1rqhoab"]
 
-[ext_resource type="Script" path="res://scenes/test.gd" id="1_xd0n6"]
+[ext_resource type="Script" path="res://scenes/test_universal.gd" id="1_jmwei"]
 [ext_resource type="Script" path="res://addons/go_conductor_#/MusicSwitch.cs" id="2_536u4"]
 [ext_resource type="Script" path="res://addons/go_conductor_#/MusicConductor.cs" id="2_gj8g8"]
 [ext_resource type="Script" path="res://addons/go_conductor_#/MusicTrack.cs" id="3_ygbfp"]
@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dfstbh5qrs2w8" path="res://imports/music/Northstar.mp3" id="7_uvpc3"]
 
 [node name="test" type="Node2D"]
-script = ExtResource("1_xd0n6")
+script = ExtResource("1_jmwei")
 
 [node name="musicSwitch" type="Node" parent="."]
 script = ExtResource("2_536u4")

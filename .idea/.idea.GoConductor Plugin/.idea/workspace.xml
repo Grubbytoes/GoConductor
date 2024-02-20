@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +24,7 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -111,6 +110,7 @@
       <workItem from="1708034418302" duration="1868000" />
       <workItem from="1708036455290" duration="688000" />
       <workItem from="1708174890115" duration="5083000" />
+      <workItem from="1708447069078" duration="393000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -224,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708273402301</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixed problem with stop not working&#10;&#10;* DO NOT USE PLAYBACKPOSITION INTERNALLY IT IS NOT WORTH IT">
+      <option name="closed" value="true" />
+      <created>1708275375435</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708275375435</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,6 +273,7 @@
     <MESSAGE value="Thursday evening &#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping" />
     <MESSAGE value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
     <MESSAGE value="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me" />
+    <MESSAGE value="Fixed problem with stop not working&#10;&#10;* DO NOT USE PLAYBACKPOSITION INTERNALLY IT IS NOT WORTH IT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed problem with stop not working&#10;&#10;* DO NOT USE PLAYBACKPOSITION INTERNALLY IT IS NOT WORTH IT" />
   </component>
 </project>
