@@ -43,7 +43,7 @@ public partial class MusicSwitch: MultiMusicPlayer
     /// </summary>
     /// <param name="trackName">Name of the track as it exists as a node</param>
     /// <returns>true if track changed as a result </returns>
-    public bool Cue(String trackName)
+    public override bool Cue(String trackName)
     {
         // Get the track
         GcMusicNode newTrack = GetTrack(trackName);

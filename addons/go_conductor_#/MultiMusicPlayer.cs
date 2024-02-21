@@ -4,7 +4,7 @@ using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
 
-public partial class MultiMusicPlayer : GcMusicNode
+public abstract partial class MultiMusicPlayer : GcMusicNode
 {
     private Dictionary<String, GcMusicNode> TrackDictionary { get; set; }
 
@@ -23,6 +23,14 @@ public partial class MultiMusicPlayer : GcMusicNode
         }
     }
 
+    public abstract bool Cue(String trackName);
+
+    
+    /// <summary>
+    /// Finds the track of the given name
+    /// </summary>
+    /// <param name="trackName">The name of the track</param>
+    /// <returns>The track, or null if it cannot be found</returns>
     protected GcMusicNode GetTrack(String trackName)
     {
         // I haven't been using c# long enough to know exatly what this does

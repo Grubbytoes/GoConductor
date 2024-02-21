@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +113,8 @@
       <workItem from="1708034418302" duration="1868000" />
       <workItem from="1708036455290" duration="688000" />
       <workItem from="1708174890115" duration="5083000" />
-      <workItem from="1708447069078" duration="393000" />
+      <workItem from="1708447069078" duration="1100000" />
+      <workItem from="1708511186328" duration="1091000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />

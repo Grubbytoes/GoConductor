@@ -25,6 +25,7 @@ public abstract partial class GcMusicNode : Node, IMusicController
     /// </summary>
     public bool Playing { get; set; }
 
+    [Export(PropertyHint.Range, "-30, 18, 0.5")]
     public float Gain { get; set; }
 
     protected float PlayHead { get; set; }
@@ -63,7 +64,7 @@ public abstract partial class GcMusicNode : Node, IMusicController
     }
 
 
-    // TODO This isn't working w/ MusicTrack
+    // TODO This isn't working w/ MusicConductor
     public virtual void PlayFrom(float position)
     {
         PlayHead = position;

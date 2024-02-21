@@ -42,7 +42,27 @@ public partial class MusicConductor : MultiMusicPlayer
         base._Ready();
         LeadTrack = GetChild(0) as MusicTrack;
     }
-    
+
+    /// <summary>
+    /// Cues the track if it is not playing, cues out if it is
+    /// </summary>
+    /// <param name="trackName">Name of the track</param>
+    /// <returns>True if track successfully found and acted upon</returns>
+    public override bool Cue(string trackName)
+    {
+        // Try cueing the track
+        bool success = CueIn(trackName);
+        
+        // If that didn't work, maybe its already playing
+        if (!success)
+        {
+            success = CueOut(trackName);
+        }
+        
+        // If either was successful, success should be true
+        return success;
+    }
+
     /// <summary>
     /// Adds the track to the arrangement, if it is found
     /// </summary>
@@ -120,5 +140,14 @@ public partial class MusicConductor : MultiMusicPlayer
         {
             t.Stop();
         }
+    }
+
+    public override void PlayFrom(float position)
+    {
+        foreach (var t in TracksCurrentlyPlaying)
+        {
+            t.PlayFrom(position);
+        }
+        base.Play();
     }
 }
