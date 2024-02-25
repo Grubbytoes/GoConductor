@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://bor54x4av3pro"]
+
+[ext_resource type="Script" path="res://scenes/test_c.gd" id="1_iqwl8"]
+[ext_resource type="PackedScene" uid="uid://cbw1sp2xvdsqf" path="res://scenes/gc-nodes/GcMusicConductor.tscn" id="2_gos7b"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicSwitch.cs" id="3_udhnm"]
+[ext_resource type="PackedScene" uid="uid://duwrxlfsgbsvp" path="res://scenes/gc-nodes/GcMusicTrack.tscn" id="3_vxqq0"]
+[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/tangerine-song/melody.mp3" id="4_mk4sh"]
+[ext_resource type="AudioStream" uid="uid://cjdmgykpg0ut7" path="res://imports/music/tangerine-song/backing.mp3" id="5_l2s3n"]
+[ext_resource type="AudioStream" uid="uid://dfstbh5qrs2w8" path="res://imports/music/Northstar.mp3" id="7_bqerq"]
+
+[node name="test_a" type="Node2D"]
+script = ExtResource("1_iqwl8")
+
+[node name="music" type="Node" parent="."]
+script = ExtResource("3_udhnm")
+
+[node name="ebm" parent="music" instance=ExtResource("2_gos7b")]
+
+[node name="melody" parent="music/ebm" instance=ExtResource("3_vxqq0")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/ebm/melody"]
+stream = ExtResource("4_mk4sh")
+
+[node name="backing" parent="music/ebm" instance=ExtResource("3_vxqq0")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/ebm/backing"]
+stream = ExtResource("5_l2s3n")
+
+[node name="northstar" parent="music" instance=ExtResource("3_vxqq0")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/northstar"]
+stream = ExtResource("7_bqerq")
+volume_db = 3.0
+
+[node name="trackSwitch" type="CheckButton" parent="."]
+offset_right = 44.0
+offset_bottom = 24.0
+
+[connection signal="toggled" from="trackSwitch" to="." method="_on_track_switch_toggled"]

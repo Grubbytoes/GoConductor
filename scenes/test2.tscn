@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dp0ys6op4lmi1"]
+
+[ext_resource type="Script" path="res://scenes/test2.gd" id="1_uroue"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicSwitch.cs" id="2_vscdq"]
+[ext_resource type="PackedScene" uid="uid://duwrxlfsgbsvp" path="res://scenes/gc-nodes/GcMusicTrack.tscn" id="3_5y1wm"]
+[ext_resource type="AudioStream" uid="uid://dfstbh5qrs2w8" path="res://imports/music/Northstar.mp3" id="4_oy0m3"]
+
+[node name="test2" type="Node2D"]
+script = ExtResource("1_uroue")
+
+[node name="switch" type="Node" parent="."]
+script = ExtResource("2_vscdq")
+
+[node name="northstar" parent="switch" instance=ExtResource("3_5y1wm")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="switch/northstar"]
+stream = ExtResource("4_oy0m3")

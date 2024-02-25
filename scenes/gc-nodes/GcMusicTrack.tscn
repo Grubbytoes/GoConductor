@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://duwrxlfsgbsvp"]
+
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicTrack.cs" id="1_1c8q6"]
+
+[node name="GcMusicTrack" type="Node"]
+script = ExtResource("1_1c8q6")

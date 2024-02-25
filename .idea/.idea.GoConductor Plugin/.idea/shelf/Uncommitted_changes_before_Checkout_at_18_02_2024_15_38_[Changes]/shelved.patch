@@ -1,0 +1,377 @@
+Index: addons/go_conductor_#/MusicTrack.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System;\nusing Godot;\n\nnamespace GoConductorPlugin.addons.go_conductor__;\n\npublic partial class MusicTrack : GcMusicNode\n{\n    private AudioStreamPlayer AudioPlayer { get; set; }\n    private float FinalTrackVolume { get; set; }\n    [Export] public float Attack = 0.2f;\n    [Export] public bool Loop = true;\n\n    public override float PlaybackPosition\n    {\n        get {\n            if (Playing)\n            {\n                return AudioPlayer.GetPlaybackPosition();\n            }\n            else\n            {\n                return PlayHead;\n            }\n        }\n        set { AudioPlayer.Seek(value); }\n    }\n\n\n    public override void Play()\n    {\n        // If we are already playing, return\n        if (Playing) {return;}\n        \n        // Not playing from the start (ie after pausing)?\n        if (PlaybackPosition > 0.0)\n        {\n            // Lower the tracks volume and play\n            AudioPlayer.VolumeDb = FinalTrackVolume - 30;\n            AudioPlayer.Play(PlaybackPosition);\n            \n            // Get the tween going\n            var fadeIn = CreateTween();\n            fadeIn.TweenProperty(AudioPlayer, \"volume_db\", FinalTrackVolume, Attack);\n        }\n        else\n        {\n            // Just play from the start\n            DebugPrint(\"playing from the start\");\n            AudioPlayer.Play();\n        }\n        \n        // We're ready to go\n        base.Play();\n    }\n\n    public override void Pause()\n    {\n        base.Pause();\n        PlayHead = AudioPlayer.GetPlaybackPosition();\n        StopAudioPlayer();\n    }\n\n    public override void Stop()\n    {\n        base.Stop();\n        StopAudioPlayer();\n    }\n    \n    // Stops Audio player after a short volume tween, nothing more, nothing less\n    // doesn't touch any variables, nothing\n    private void StopAudioPlayer()\n    {\n        var tween = CreateTween();\n        tween.TweenProperty(AudioPlayer, \"volume_db\", FinalTrackVolume - 30, Attack);\n        tween.TweenCallback(Callable.From(AudioPlayer.Stop));\n    }\n\n    // TODO\n    private void TrackEnd()\n    {\n        // If loop, play the track again, sam\n        if (Loop)\n        {\n            AudioPlayer.Play();\n        }\n        // Otherwise, we stop\n        else\n        {\n            Stop();\n        }\n    }\n\n    public override void _Ready()\n    {\n        AudioPlayer = (AudioStreamPlayer)GetChild(0);\n        FinalTrackVolume = AudioPlayer.VolumeDb;\n    }\n}
+===================================================================
+diff --git a/addons/go_conductor_#/MusicTrack.cs b/addons/go_conductor_#/MusicTrack.cs
+--- a/addons/go_conductor_#/MusicTrack.cs	
++++ b/addons/go_conductor_#/MusicTrack.cs	
+@@ -12,17 +12,8 @@
+ 
+     public override float PlaybackPosition
+     {
+-        get {
+-            if (Playing)
+-            {
+-                return AudioPlayer.GetPlaybackPosition();
+-            }
+-            else
+-            {
+-                return PlayHead;
+-            }
+-        }
+-        set { AudioPlayer.Seek(value); }
++        get => AudioPlayer.GetPlaybackPosition();
++        set => AudioPlayer.Seek(value);
+     }
+ 
+ 
+@@ -34,21 +25,12 @@
+         // Not playing from the start (ie after pausing)?
+         if (PlaybackPosition > 0.0)
+         {
+-            // Lower the tracks volume and play
+-            AudioPlayer.VolumeDb = FinalTrackVolume - 30;
+-            AudioPlayer.Play(PlaybackPosition);
+-            
+-            // Get the tween going
+-            var fadeIn = CreateTween();
+-            fadeIn.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume, Attack);
++            StartAudioPlayer(true);
+         }
+         else
+         {
+-            // Just play from the start
+-            DebugPrint("playing from the start");
+-            AudioPlayer.Play();
++            StartAudioPlayer();
+         }
+-        
+         // We're ready to go
+         base.Play();
+     }
+@@ -56,24 +38,56 @@
+     public override void Pause()
+     {
+         base.Pause();
+-        PlayHead = AudioPlayer.GetPlaybackPosition();
+-        StopAudioPlayer();
++        HaltAudioPlayer();
+     }
+ 
+     public override void Stop()
+     {
+-        base.Stop();
+-        StopAudioPlayer();
++        Pause();
++        PlaybackPosition = 0.0f;
+     }
+-    
+-    // Stops Audio player after a short volume tween, nothing more, nothing less
+-    // doesn't touch any variables, nothing
+-    private void StopAudioPlayer()
++
++    public override void PlayFrom(float position)
+     {
+-        var tween = CreateTween();
+-        tween.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume - 30, Attack);
+-        tween.TweenCallback(Callable.From(AudioPlayer.Stop));
++        
++    }
++
++    // PAUSES Audio player after a short volume tween, nothing more, nothing less
++    // doesn't touch any variables, nothing.
++    private void HaltAudioPlayer(Boolean withTween = false)
++    {
++        if (withTween)
++        {
++            Tween tween = CreateTween();
++            tween.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume - 30, Attack);
++            tween.TweenCallback(Callable.From(() => AudioPlayer.StreamPaused = true));
++        }
++        else
++        {
++            AudioPlayer.StreamPaused = true;
++        }
+     }
++    
++    // Starts the audio player with or without a tween
++    private void StartAudioPlayer(Boolean withTween = false)
++    {
++        if (withTween)
++        {
++            // Lower the tracks volume and play
++            AudioPlayer.VolumeDb = FinalTrackVolume - 30;
++            AudioPlayer.Play(PlaybackPosition);
++            
++            // Get the tween going
++            var fadeIn = CreateTween();
++            fadeIn.TweenProperty(AudioPlayer, "volume_db", FinalTrackVolume, Attack);
++        }
++        else
++        {
++            AudioPlayer.VolumeDb = FinalTrackVolume;
++            AudioPlayer.Play(PlaybackPosition);
++        }
++    }
++
+ 
+     // TODO
+     private void TrackEnd()
+Index: addons/go_conductor_#/GcMusicNode.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using Godot;\n\nnamespace GoConductorPlugin.addons.go_conductor__;\n\npublic abstract partial class GcMusicNode : Node, IMusicController\n{\n    private float _playbackPosition;\n\n    /// <summary>\n    ///     Where in time the arrangement is at currently\n    /// </summary>\n    public virtual float PlaybackPosition\n    {\n        get\n        {\n            GD.PushWarning(\"UNIMPLEMENTED PLAYBACK POSITION GET\");\n            return _playbackPosition;\n        }\n        set => _playbackPosition = value;\n    }\n\n    /// <summary>\n    ///     The point in time at which the arrangement was last played from or paused at.\n    ///     Ie, where the arrangement should be playing from next time play is hit\n    /// </summary>\n    public bool Playing { get; set; }\n\n    public float Gain { get; set; }\n\n    public float PlayHead { get; set; }\n\n    public virtual void Play()\n    {\n        Playing = true;\n    }\n\n    public virtual void Pause()\n    {\n        Playing = false;\n    }\n\n    public virtual void Stop()\n    {\n        Playing = false;\n        PlayHead = 0;\n    }\n\n    public void Restart()\n    {\n        Stop();\n        Play();\n    }\n\n    /// <summary>\n    ///     Pauses if playing, plays if paused\n    /// </summary>\n    public void TogglePause()\n    {\n        if (Playing)\n            Pause();\n        else\n            Play();\n    }\n\n\n    // TODO This isn't working w/ MusicTrack\n    public virtual void PlayFrom(float position)\n    {\n        Pause();\n        seek(position);\n        Play();\n    }\n\n    /// <summary>\n    ///     Sets the play head to the given position, but does NOT change the arrangement is it is currently playing.\n    ///     IE, will be played from this position after the arrangement is next played from a state of pause/stop\n    /// </summary>\n    /// <param name=\"position\">The position to play from</param>\n    public void seek(float position)\n    {\n        PlayHead = position;\n    }\n\n    /// <summary>\n    ///     Alias for TogglePause\n    /// </summary>\n    public void TogglePlay()\n    {\n        TogglePause();\n    }\n\n    protected void DebugPrint(string message)\n    {\n        var output = Name + \": - \" + message;\n        GD.Print(output);\n    }\n}
+===================================================================
+diff --git a/addons/go_conductor_#/GcMusicNode.cs b/addons/go_conductor_#/GcMusicNode.cs
+--- a/addons/go_conductor_#/GcMusicNode.cs	
++++ b/addons/go_conductor_#/GcMusicNode.cs	
+@@ -27,7 +27,7 @@
+ 
+     public float Gain { get; set; }
+ 
+-    public float PlayHead { get; set; }
++    private float PlayHead { get; set; }
+ 
+     public virtual void Play()
+     {
+@@ -66,8 +66,8 @@
+     // TODO This isn't working w/ MusicTrack
+     public virtual void PlayFrom(float position)
+     {
+-        Pause();
+-        seek(position);
++        Stop();
++        PlaybackPosition = position;
+         Play();
+     }
+ 
+@@ -76,7 +76,7 @@
+     ///     IE, will be played from this position after the arrangement is next played from a state of pause/stop
+     /// </summary>
+     /// <param name="position">The position to play from</param>
+-    public void seek(float position)
++    public void Seek(float position)
+     {
+         PlayHead = position;
+     }
+Index: addons/go_conductor_#/MusicConductor.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>using System.Collections.Generic;\nusing Godot;\n\nnamespace GoConductorPlugin.addons.go_conductor__;\n\npublic partial class MusicConductor : MultiMusicPlayer\n{\n    private List<GcMusicNode> TracksCurrentlyPlaying { get; set; }\n    // Basically the first element in TracksCurrentlyPlaying is the lead\n    public GcMusicNode LeadTrack\n    {\n        get {\n            if (TracksCurrentlyPlaying.Count < 1)\n            {\n                return null;\n            }\n            return TracksCurrentlyPlaying[0];\n        }\n        private set => TracksCurrentlyPlaying.Insert(0, value);\n    }\n\n    public override float PlaybackPosition\n    {\n        get => LeadTrack.PlaybackPosition;\n        set\n        {\n            foreach (GcMusicNode t in TracksCurrentlyPlaying)\n            {\n                t.PlaybackPosition = value;\n            }\n        }\n    }\n    \n    public override void _EnterTree()\n    {\n        base._EnterTree();\n        TracksCurrentlyPlaying = new List<GcMusicNode>();\n    }\n\n    public override void _Ready()\n    {\n        base._Ready();\n        LeadTrack = GetChild(0) as MusicTrack;\n    }\n    \n    /// <summary>\n    /// Adds the track to the arrangement, if it is found\n    /// </summary>\n    /// <param name=\"trackName\">Name of track to play</param>\n    /// <returns>True if track successfully found and added to arrangement</returns>\n    public bool CueIn(string trackName)\n    {\n        GcMusicNode trackIn = GetTrack(trackName);\n        \n        // Track not found or track already playing\n        if (trackIn == null || TracksCurrentlyPlaying.Contains(trackIn) )\n        {\n            return false;\n        }\n        \n        // Append track to currently playing, so we can see it later\n        TracksCurrentlyPlaying.Add(trackIn);\n        \n        // Do we need to play the track?\n        if (Playing)\n        {\n            trackIn.PlayFrom(PlaybackPosition);\n        }\n        else\n        {\n            trackIn.PlayHead = PlaybackPosition;\n        }\n\n        return true;\n    }\n\n    /// <summary>\n    /// Removes the track, by name, from the arrangement\n    /// </summary>\n    /// <param name=\"trackName\">Track name</param>\n    /// <returns>True if found and removed from arrangement successfully</returns>\n    public bool CueOut(string trackName)\n    {\n        GcMusicNode trackOut = GetTrack(trackName);\n        int trackOutIdx = TracksCurrentlyPlaying.IndexOf(trackOut);\n\n        if (trackOutIdx < 0)\n        {\n            return false;\n        }\n        \n        trackOut.Stop();\n        TracksCurrentlyPlaying.RemoveAt(trackOutIdx);\n        return true;\n    }\n\n    public override void Play()\n    {\n        base.Play();\n        foreach (GcMusicNode t in TracksCurrentlyPlaying)\n        {\n            t.Play();\n        }\n    }\n\n    public override void Pause()\n    {\n        base.Pause();\n        foreach (GcMusicNode t in TracksCurrentlyPlaying)\n        {\n            t.Pause();\n        }\n    }\n\n    public override void Stop()\n    {\n        base.Stop();\n        foreach (GcMusicNode t in TracksCurrentlyPlaying)\n        {\n            t.Pause();\n        }\n    }\n}
+===================================================================
+diff --git a/addons/go_conductor_#/MusicConductor.cs b/addons/go_conductor_#/MusicConductor.cs
+--- a/addons/go_conductor_#/MusicConductor.cs	
++++ b/addons/go_conductor_#/MusicConductor.cs	
+@@ -68,7 +68,7 @@
+         }
+         else
+         {
+-            trackIn.PlayHead = PlaybackPosition;
++            trackIn.Seek(PlaybackPosition);
+         }
+ 
+         return true;
+Index: .idea/.idea.GoConductor Plugin/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"8e81a08b-300b-43fd-bb29-aecc22e2ff98\" name=\"Changes\" comment=\"Added debug print for GcMusicNode&#10;&#10;also some comments\">\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/.gitignore\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/encodings.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/indexLayout.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/projectSettingsUpdater.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]/shelved.patch\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]1/shelved.patch\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45__Changes_.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/vcs.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/DesignTimeBuild/.dtbcache.v2\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/FileContentIndex/5ad13f09-88db-433f-be3d-2ac55829ca47.vsidx\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.futdcache.v2\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.suo\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.metadata.v7.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.projects.v7.bin\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/scenes/test.gd\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/scenes/test.tscn\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/GoConductor Plugin.csproj\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/GoConductor Plugin.csproj\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/project.godot\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/project.godot\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"gc-sharp\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"RESET_MODE\" value=\"HARD\" />\n  </component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs\" root0=\"SKIP_HIGHLIGHTING\" />\n  </component>\n  <component name=\"MetaFilesCheckinStateConfiguration\" checkMetaFiles=\"true\" />\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1\n}</component>\n  <component name=\"ProjectId\" id=\"2cDXrOmTp8dSxxNQbK678CCG6C4\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Language Defaults&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  },\n  &quot;keyToStringList&quot;: {\n    &quot;rider.external.source.directories&quot;: [\n      &quot;C:\\\\Users\\\\Hugo\\\\AppData\\\\Roaming\\\\JetBrains\\\\Rider2023.2\\\\resharper-host\\\\DecompilerCache&quot;,\n      &quot;C:\\\\Users\\\\Hugo\\\\AppData\\\\Roaming\\\\JetBrains\\\\Rider2023.2\\\\resharper-host\\\\SourcesCache&quot;,\n      &quot;C:\\\\Users\\\\Hugo\\\\AppData\\\\Local\\\\Symbols\\\\src&quot;\n    ]\n  }\n}</component>\n  <component name=\"RunManager\" selected=\".NET Executable.Player\">\n    <configuration name=\"Editor\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$PROJECT_DIR$/../../../../../../Program Files/Godot_v4.1.1-stable_mono_win64/Godot_v4.1.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\Hugo\\Documents\\Code\\Godot Projects\\GoConductor Plugin&quot; --editor\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Player\" type=\"RunExe\" factoryName=\".NET Executable\">\n      <option name=\"EXE_PATH\" value=\"$PROJECT_DIR$/../../../../../../Program Files/Godot_v4.1.1-stable_mono_win64/Godot_v4.1.1-stable_mono_win64.exe\" />\n      <option name=\"PROGRAM_PARAMETERS\" value=\"--path &quot;C:\\Users\\Hugo\\Documents\\Code\\Godot Projects\\GoConductor Plugin&quot;\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"PASS_PARENT_ENVS\" value=\"1\" />\n      <option name=\"USE_EXTERNAL_CONSOLE\" value=\"0\" />\n      <option name=\"USE_MONO\" value=\"0\" />\n      <option name=\"RUNTIME_ARGUMENTS\" value=\"\" />\n      <option name=\"RUNTIME_TYPE\" value=\"coreclr\" />\n      <method v=\"2\">\n        <option name=\"Build Solution\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"8e81a08b-300b-43fd-bb29-aecc22e2ff98\" name=\"Changes\" comment=\"\" />\n      <created>1707647323549</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1707647323549</updated>\n      <workItem from=\"1707647329451\" duration=\"155000\" />\n      <workItem from=\"1707647500792\" duration=\"27000\" />\n      <workItem from=\"1707647554378\" duration=\"275000\" />\n      <workItem from=\"1707647856811\" duration=\"5413000\" />\n      <workItem from=\"1707655143050\" duration=\"111000\" />\n      <workItem from=\"1707659380385\" duration=\"1340000\" />\n      <workItem from=\"1707695666016\" duration=\"1097000\" />\n      <workItem from=\"1707698069872\" duration=\"142000\" />\n      <workItem from=\"1707730176390\" duration=\"2377000\" />\n      <workItem from=\"1707732697362\" duration=\"671000\" />\n      <workItem from=\"1707903818648\" duration=\"135000\" />\n      <workItem from=\"1708015094582\" duration=\"10000\" />\n      <workItem from=\"1708015132207\" duration=\"2522000\" />\n      <workItem from=\"1708022652952\" duration=\"1213000\" />\n      <workItem from=\"1708034418302\" duration=\"1868000\" />\n      <workItem from=\"1708036455290\" duration=\"688000\" />\n      <workItem from=\"1708174890115\" duration=\"5083000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"MusicTrack Works\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707652227501</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1707652227501</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Skeleton for conductor\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707697577918</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1707697577918</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Added PlaybackPosition to GcMusicNode.cs, implimented for MusicTrack.cs\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707697999796</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1707697999796</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Monday Morning&#10;&#10;* Added PlayFrom(position)&#10;* Added PlaybackPosition&#10;* Untested implimentation of conductor&#10;* Removed [export] from RestartOnRecue\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707731449446</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1707731449446</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Implimented PlaybackPosition getters for conductor and switch\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707731653984</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1707731653984</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"Conductor implemented untested\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707732566619</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1707732566619</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"CONDUCTOR WORKS!!!!! I'M GONNA CUM\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1707732846807</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1707732846807</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"Added TogglePlay alias for TogglePause\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708021386956</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708021386956</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"Added proto-skeleton for transition\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708023050088</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708023050088</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"Playback position properties changed\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708023663064</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708023663064</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"omahgawd exporting properties works now&#10;&#10;For future reference, NO properties can have missing setters, even if the setters don't do anything.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708029032782</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708029032782</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"Thursday evening \uD83D\uDE01&#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708036193562</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708036193562</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"Added debug print for GcMusicNode&#10;&#10;also some comments\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1708176802912</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1708176802912</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"14\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"UnityCheckinConfiguration\" checkUnsavedScenes=\"true\" />\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"CUSTOM_BOOLEAN_PROPERTIES\">\n                <map>\n                  <entry key=\"Show.Git.Branches\" value=\"false\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CLEAR_INITIAL_COMMIT_MESSAGE\" value=\"true\" />\n    <MESSAGE value=\"MusicTrack Works\" />\n    <MESSAGE value=\"Skeleton for conductor\" />\n    <MESSAGE value=\"Added PlaybackPosition to GcMusicNode.cs, implimented for MusicTrack.cs\" />\n    <MESSAGE value=\"Monday Morning&#10;&#10;* Added PlayFrom(position)&#10;* Added PlaybackPosition&#10;* Untested implimentation of conductor&#10;* Removed [export] from RestartOnRecue\" />\n    <MESSAGE value=\"Implimented PlaybackPosition getters for conductor and switch\" />\n    <MESSAGE value=\"Conductor implemented untested\" />\n    <MESSAGE value=\"CONDUCTOR WORKS!!!!! I'M GONNA CUM\" />\n    <MESSAGE value=\"Added TogglePlay alias for TogglePause\" />\n    <MESSAGE value=\"Revert &quot;Added TogglePlay alias for TogglePause&quot;&#10;&#10;This reverts commit d94c8f7c\" />\n    <MESSAGE value=\"Added proto-skeleton for transition\" />\n    <MESSAGE value=\"Playback position properties changed\" />\n    <MESSAGE value=\"omahgawd exporting properties works now&#10;&#10;For future reference, NO properties can have missing setters, even if the setters don't do anything.\" />\n    <MESSAGE value=\"Thursday evening &#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping\" />\n    <MESSAGE value=\"Added debug print for GcMusicNode&#10;&#10;also some comments\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Added debug print for GcMusicNode&#10;&#10;also some comments\" />\n  </component>\n</project>
+===================================================================
+diff --git a/.idea/.idea.GoConductor Plugin/.idea/workspace.xml b/.idea/.idea.GoConductor Plugin/.idea/workspace.xml
+--- a/.idea/.idea.GoConductor Plugin/.idea/workspace.xml	
++++ b/.idea/.idea.GoConductor Plugin/.idea/workspace.xml	
+@@ -4,30 +4,13 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Added debug print for GcMusicNode&#10;&#10;also some comments">
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/.gitignore" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/encodings.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/indexLayout.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/projectSettingsUpdater.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]/shelved.patch" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45_[Changes]1/shelved.patch" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_02_2024_18_45__Changes_.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/FileContentIndex/5ad13f09-88db-433f-be3d-2ac55829ca47.vsidx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.futdcache.v2" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.vs/GOCONDUCTOR PLUGIN/v17/.suo" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.metadata.v7.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/goconductor plugin.projects.v7.bin" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/scenes/test.gd" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/GoConductor Plugin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GoConductor Plugin.csproj" afterDir="false" />
++    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/scenes/test.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.gd" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/scenes/test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test.tscn" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -37,7 +20,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="gc-sharp" />
++        <entry key="$PROJECT_DIR$" value="master" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -46,6 +29,8 @@
+   <component name="HighlightingSettingsPerFile">
+     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
+     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MusicTrack.cs" root0="SKIP_HIGHLIGHTING" />
+   </component>
+   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+   <component name="ProjectColorInfo">{
+@@ -58,10 +43,12 @@
+   </component>
+   <component name="PropertiesComponent">{
+   &quot;keyToString&quot;: {
++    &quot;Notification.DisplayName-DoNotAsk-Vcs Important Messages&quot;: &quot;VCS important messages&quot;,
++    &quot;Notification.DoNotAsk-Vcs Important Messages&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;bugfix-17-02&quot;,
+     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+@@ -129,7 +116,8 @@
+       <workItem from="1708022652952" duration="1213000" />
+       <workItem from="1708034418302" duration="1868000" />
+       <workItem from="1708036455290" duration="688000" />
+-      <workItem from="1708174890115" duration="5083000" />
++      <workItem from="1708174890115" duration="6054000" />
++      <workItem from="1708262553484" duration="3902000" />
+     </task>
+     <task id="LOCAL-00001" summary="MusicTrack Works">
+       <option name="closed" value="true" />
+@@ -235,7 +223,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1708176802912</updated>
+     </task>
+-    <option name="localTasksCounter" value="14" />
++    <task id="LOCAL-00014" summary="Some progress is being made, reset to here if it catches fire">
++      <option name="closed" value="true" />
++      <created>1708182821889</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1708182821889</updated>
++    </task>
++    <option name="localTasksCounter" value="15" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -275,6 +271,26 @@
+     <MESSAGE value="omahgawd exporting properties works now&#10;&#10;For future reference, NO properties can have missing setters, even if the setters don't do anything." />
+     <MESSAGE value="Thursday evening &#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping" />
+     <MESSAGE value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
++    <MESSAGE value="Some progress is being made, reset to here if it catches fire" />
++    <option name="LAST_COMMIT_MESSAGE" value="Some progress is being made, reset to here if it catches fire" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" type="DotNet Breakpoints">
++          <url>file://$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs</url>
++          <line>20</line>
++          <properties documentPath="C:\Users\Hugo\Documents\Code\Godot Projects\GoConductor Plugin\addons\go_conductor_#\MusicTrack.cs" initialLine="20" containingFunctionPresentation="Method 'Play'">
++            <startOffsets>
++              <option value="496" />
++            </startOffsets>
++            <endOffsets>
++              <option value="497" />
++            </endOffsets>
++          </properties>
++          <option name="timeStamp" value="4" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+   </component>
+ </project>
+\ No newline at end of file
+Index: scenes/test.tscn
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[gd_scene load_steps=8 format=3 uid=\"uid://c2pfhp1rqhoab\"]\n\n[ext_resource type=\"Script\" path=\"res://scenes/test.gd\" id=\"1_xd0n6\"]\n[ext_resource type=\"Script\" path=\"res://addons/go_conductor_#/MusicSwitch.cs\" id=\"2_536u4\"]\n[ext_resource type=\"Script\" path=\"res://addons/go_conductor_#/MusicConductor.cs\" id=\"2_gj8g8\"]\n[ext_resource type=\"Script\" path=\"res://addons/go_conductor_#/MusicTrack.cs\" id=\"3_ygbfp\"]\n[ext_resource type=\"AudioStream\" uid=\"uid://c66k7eirobaes\" path=\"res://imports/music/ebm-song/bass.mp3\" id=\"4_0kk6n\"]\n[ext_resource type=\"AudioStream\" uid=\"uid://balw6nrbk6yu1\" path=\"res://imports/music/ebm-song/drums.mp3\" id=\"5_d8gqd\"]\n[ext_resource type=\"AudioStream\" uid=\"uid://dfstbh5qrs2w8\" path=\"res://imports/music/Northstar.mp3\" id=\"7_uvpc3\"]\n\n[node name=\"test\" type=\"Node2D\"]\nscript = ExtResource(\"1_xd0n6\")\n\n[node name=\"musicSwitch\" type=\"Node\" parent=\".\"]\nscript = ExtResource(\"2_536u4\")\n\n[node name=\"star\" type=\"Node\" parent=\"musicSwitch\"]\nscript = ExtResource(\"3_ygbfp\")\n\n[node name=\"AudioStreamPlayer\" type=\"AudioStreamPlayer\" parent=\"musicSwitch/star\"]\nstream = ExtResource(\"7_uvpc3\")\n\n[node name=\"ebm\" type=\"Node\" parent=\"musicSwitch\"]\nscript = ExtResource(\"2_gj8g8\")\n\n[node name=\"bass\" type=\"Node\" parent=\"musicSwitch/ebm\"]\nscript = ExtResource(\"3_ygbfp\")\n\n[node name=\"AudioStreamPlayer\" type=\"AudioStreamPlayer\" parent=\"musicSwitch/ebm/bass\"]\nstream = ExtResource(\"4_0kk6n\")\n\n[node name=\"drums\" type=\"Node\" parent=\"musicSwitch/ebm\"]\nscript = ExtResource(\"3_ygbfp\")\n\n[node name=\"AudioStreamPlayer\" type=\"AudioStreamPlayer\" parent=\"musicSwitch/ebm/drums\"]\nstream = ExtResource(\"5_d8gqd\")\n
+===================================================================
+diff --git a/scenes/test.tscn b/scenes/test.tscn
+--- a/scenes/test.tscn	
++++ b/scenes/test.tscn	
+@@ -19,6 +19,7 @@
+ 
+ [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="musicSwitch/star"]
+ stream = ExtResource("7_uvpc3")
++volume_db = 4.0
+ 
+ [node name="ebm" type="Node" parent="musicSwitch"]
+ script = ExtResource("2_gj8g8")
+@@ -34,3 +35,19 @@
+ 
+ [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="musicSwitch/ebm/drums"]
+ stream = ExtResource("5_d8gqd")
++
++[node name="playFrom" type="Button" parent="."]
++offset_right = 8.0
++offset_bottom = 8.0
++text = "playfrom"
++
++[node name="CheckButton" type="CheckButton" parent="."]
++offset_top = 40.0
++offset_right = 148.0
++offset_bottom = 71.0
++button_pressed = true
++text = "change track"
++alignment = 2
++
++[connection signal="pressed" from="playFrom" to="." method="_on_pplay_from_pressed"]
++[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+Index: scenes/test.gd
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>extends Node2D\n@onready var music_switch = $musicSwitch\n@onready var music_conductor = $musicSwitch/ebm\n\n\nfunc _ready():\n\tmusic_switch.Cue(\"ebm\")\n\tmusic_switch.Play()\n\t\nfunc _process(delta):\n\tif Input.is_action_just_pressed(\"numpad_1\"): music_switch.Play()\n\telif Input.is_action_just_pressed(\"numpad_2\"): music_switch.Pause()\n
+===================================================================
+diff --git a/scenes/test.gd b/scenes/test.gd
+--- a/scenes/test.gd	
++++ b/scenes/test.gd	
+@@ -4,9 +4,24 @@
+ 
+ 
+ func _ready():
+-	music_switch.Cue("ebm")
+-	music_switch.Play()
++	music_switch.Cue("star")
+ 	
+ func _process(delta):
+ 	if Input.is_action_just_pressed("numpad_1"): music_switch.Play()
+ 	elif Input.is_action_just_pressed("numpad_2"): music_switch.Pause()
++	elif Input.is_action_just_pressed("numpad_3"): music_switch.Stop()
++	
++	# Conductor
++	if Input.is_action_just_pressed("numpad_4"): music_conductor.CueIn("drums")
++	elif  Input.is_action_just_pressed("numpad_5"): music_conductor.CueOut("drums")
++
++
++func _on_pplay_from_pressed():
++	music_switch.PlayFrom(2.0)
++
++
++func _on_check_button_toggled(button_pressed):
++	if button_pressed:
++		music_switch.Cue("ebm")
++	else:
++		music_switch.Cue("star")

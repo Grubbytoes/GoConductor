@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://g4jusileho14"]
+
+[ext_resource type="Script" path="res://scenes/test_universal.gd" id="1_06ln1"]
+[ext_resource type="PackedScene" uid="uid://duwrxlfsgbsvp" path="res://scenes/gc-nodes/GcMusicTrack.tscn" id="2_1ebkh"]
+[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/tangerine-song/melody.mp3" id="3_e65g8"]
+
+[node name="test_a" type="Node2D"]
+script = ExtResource("1_06ln1")
+
+[node name="music" parent="." instance=ExtResource("2_1ebkh")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music"]
+stream = ExtResource("3_e65g8")

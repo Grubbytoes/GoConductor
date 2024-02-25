@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhhlshg8cadhl"]
+
+[ext_resource type="Script" path="res://scenes/test_b.gd" id="1_288sn"]
+[ext_resource type="PackedScene" uid="uid://duwrxlfsgbsvp" path="res://scenes/gc-nodes/GcMusicTrack.tscn" id="2_l8bqd"]
+[ext_resource type="PackedScene" uid="uid://cbw1sp2xvdsqf" path="res://scenes/gc-nodes/GcMusicConductor.tscn" id="2_w55k3"]
+[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/tangerine-song/melody.mp3" id="3_eh18w"]
+[ext_resource type="AudioStream" uid="uid://cjdmgykpg0ut7" path="res://imports/music/tangerine-song/backing.mp3" id="5_psac7"]
+[ext_resource type="Script" path="res://scenes/trackmanager_test_b.gd" id="6_rofuq"]
+
+[node name="test_a" type="Node2D"]
+script = ExtResource("1_288sn")
+
+[node name="music" parent="." instance=ExtResource("2_w55k3")]
+
+[node name="melody" parent="music" instance=ExtResource("2_l8bqd")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/melody"]
+stream = ExtResource("3_eh18w")
+
+[node name="backing" parent="music" instance=ExtResource("2_l8bqd")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/backing"]
+stream = ExtResource("5_psac7")
+
+[node name="trackmanager" type="Node" parent="."]
+script = ExtResource("6_rofuq")
