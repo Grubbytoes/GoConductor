@@ -31,7 +31,7 @@ public abstract partial class MultiMusicPlayer : GcMusicNode
     /// </summary>
     /// <param name="trackName">The name of the track</param>
     /// <returns>The track, or null if it cannot be found</returns>
-    protected GcMusicNode GetTrack(String trackName)
+    public GcMusicNode GetTrack(String trackName)
     {
         // I haven't been using c# long enough to know exatly what this does
         // but my IDE said it was a good idea
@@ -48,5 +48,14 @@ public abstract partial class MultiMusicPlayer : GcMusicNode
             return null;
         }
         */
+    }
+
+    /// <summary>
+    /// Returns an enumerator of all child tracks, 
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerable<GcMusicNode> GetAllTracks()
+    {
+        return TrackDictionary.Values;
     }
 }
