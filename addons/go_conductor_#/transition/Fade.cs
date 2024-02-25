@@ -8,6 +8,13 @@ namespace GoConductorPlugin.addons.go_conductor__.transition;
 ///
 /// This is ALL IT DOES, any updates to currently playing must be done by the parent
 /// </summary>
+
+/*
+ * TODO
+ * Making sure that gain is returned to how its original value, might actually be a good idea to do that further up
+ * TODO
+ * Protect again unexpected behaviour if one transition is called in the middle of another
+ */
 public partial class Fade : MusicTransition
 {
     private HashSet<GcMusicNode> Incoming { set; get; }
@@ -93,7 +100,7 @@ public partial class Fade : MusicTransition
         // Add all outgoing tracks to the tween
         foreach (var t in Outgoing)
         {
-            TransitionTween.Parallel().TweenProperty(t, "Gain", -30, Duration);
+            TransitionTween.Parallel().TweenProperty(t, "Gain", -30, Duration).AsRelative();
         }
         
         // Add all incoming tracks to the tween
