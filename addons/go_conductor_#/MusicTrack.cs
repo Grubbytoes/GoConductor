@@ -5,6 +5,8 @@ namespace GoConductorPlugin.addons.go_conductor__;
 
 public partial class MusicTrack : GcMusicNode
 {
+    private float _gain;
+    
     private Tween VolumeTween { get; set; }
     private AudioStreamPlayer AudioPlayer { get; set; }
     private float FinalTrackVolume { get; set; }
@@ -17,6 +19,15 @@ public partial class MusicTrack : GcMusicNode
         set => AudioPlayer.Seek(value);
     }
 
+    public override float Gain
+    {
+        get => _gain;
+        set
+        {
+            _gain = value;
+            AudioPlayer.VolumeDb = _gain + FinalTrackVolume;
+        }
+    }
 
     public override void Play()
     {
