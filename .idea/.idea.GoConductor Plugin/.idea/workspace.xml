@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="" />
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Tweaks of MultiMusicPlayer.cs ready for Transition skeleton code&#10;&#10;* Made GetTrack public&#10;* Added GetAllTracks">
+      <change afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTransition.cs" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +25,8 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MultiMusicPlayer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MultiMusicPlayer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -107,6 +113,7 @@
       <workItem from="1708174890115" duration="5083000" />
       <workItem from="1708447069078" duration="1100000" />
       <workItem from="1708511186328" duration="1376000" />
+      <workItem from="1708867905391" duration="2465000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -236,7 +243,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708512473197</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Tweaks of MultiMusicPlayer.cs ready for Transition skeleton code&#10;&#10;* Made GetTrack public&#10;* Added GetAllTracks">
+      <option name="closed" value="true" />
+      <created>1708870117833</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1708870117833</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Tweaks of MultiMusicPlayer.cs ready for Transition skeleton code&#10;&#10;* Made GetTrack public&#10;* Added GetAllTracks">
+      <option name="closed" value="true" />
+      <created>1708870263363</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1708870263363</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +302,8 @@
     <MESSAGE value="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me" />
     <MESSAGE value="Fixed problem with stop not working&#10;&#10;* DO NOT USE PLAYBACKPOSITION INTERNALLY IT IS NOT WORTH IT" />
     <MESSAGE value="Wednesday morning &#10;&#10;* Changed MusicConductor.PlayFrom, works now in non edge cases&#10;* Made Cue abstract method of MultiMusicPlayer.cs, implemented to MusicConductor.cs, untested&#10;* Exported gain&#10;* Want to make track generate its own audio stream player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wednesday morning &#10;&#10;* Changed MusicConductor.PlayFrom, works now in non edge cases&#10;* Made Cue abstract method of MultiMusicPlayer.cs, implemented to MusicConductor.cs, untested&#10;* Exported gain&#10;* Want to make track generate its own audio stream player" />
+    <MESSAGE value="Nvm it was" />
+    <MESSAGE value="Tweaks of MultiMusicPlayer.cs ready for Transition skeleton code&#10;&#10;* Made GetTrack public&#10;* Added GetAllTracks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tweaks of MultiMusicPlayer.cs ready for Transition skeleton code&#10;&#10;* Made GetTrack public&#10;* Added GetAllTracks" />
   </component>
 </project>
