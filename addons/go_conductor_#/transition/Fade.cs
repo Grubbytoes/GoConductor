@@ -1,7 +1,13 @@
 ﻿using System.Collections.Generic;
+using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__.transition;
 
+/// <summary>
+/// Once started, fades one or more tracks in or out. Tracks faded out are stopped once the transition is over
+///
+/// This is ALL IT DOES, any updates to currently playing must be done by the parent
+/// </summary>
 public class Fade : MusicTransition
 {
     private HashSet<GcMusicNode> Incoming { set; get; }
@@ -82,11 +88,34 @@ public class Fade : MusicTransition
 
     public override void Start()
     {
-        throw new System.NotImplementedException();
+        TransitionTween = Parent.CreateTween();
+        
+        // Add all outgoing tracks to the tween
+        foreach (var t in Outgoing)
+        {
+            // TODO
+        }
+        
+        // Add all incoming tracks to the tween
+        foreach (var t in Incoming)
+        {
+            // TODO
+        }
+        
+        // Add callbacks
+        TransitionTween.TweenCallback(Callable.From(StopOutgoing));
     }
 
     public override void Kill()
     {
         throw new System.NotImplementedException();
+    }
+
+    private void StopOutgoing()
+    {
+        foreach (var t in Outgoing)
+        {
+            t.Stop();
+        }
     }
 }
