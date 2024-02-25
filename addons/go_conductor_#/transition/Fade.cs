@@ -93,17 +93,25 @@ public class Fade : MusicTransition
         // Add all outgoing tracks to the tween
         foreach (var t in Outgoing)
         {
-            // TODO
+            TransitionTween.Parallel().TweenProperty(t, "Gain", -30, Duration);
         }
         
         // Add all incoming tracks to the tween
         foreach (var t in Incoming)
         {
-            // TODO
+            // * lower track volume
+            // * start the track
+            // * Add volume tweener
+            t.Gain -= 30f;
+            t.Play();
+            TransitionTween.Parallel().TweenProperty(t, "Gain", 30, Duration).AsRelative();
         }
         
         // Add callbacks
         TransitionTween.TweenCallback(Callable.From(StopOutgoing));
+        
+        // Let 'er rip!!!
+        TransitionTween.Play();
     }
 
     public override void Kill()
