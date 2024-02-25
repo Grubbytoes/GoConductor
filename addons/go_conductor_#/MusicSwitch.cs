@@ -1,4 +1,5 @@
 ﻿using System;
+using GoConductorPlugin.addons.go_conductor__.transition;
 using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__;
@@ -60,14 +61,20 @@ public partial class MusicSwitch: MultiMusicPlayer
             return false;
         }
         
-        // Stop the previous track
-        CurrentlyPlaying?.Stop();
+        // If we're cueing from a state of pause, then our life is easy
+        // But we are unlikely to be so lucky
+        if (Playing)
+        {
+            Fade fade = new Fade(this, 1f);
+            fade.AddIncomingTrack(newTrack);
+            fade.AddOutgoingTrack(CurrentlyPlaying);
+            
+            // May god have mercy on our souls
+            fade.Start();
+        }
         
         // Set the marker to the new track
         CurrentlyPlaying = newTrack;
-        
-        // Continue playing, if we already were
-        if (Playing){CurrentlyPlaying.Play();}
         
         // If we got this far, then we succeeded, wooo!!
         return true;

@@ -8,7 +8,7 @@ namespace GoConductorPlugin.addons.go_conductor__.transition;
 ///
 /// This is ALL IT DOES, any updates to currently playing must be done by the parent
 /// </summary>
-public class Fade : MusicTransition
+public partial class Fade : MusicTransition
 {
     private HashSet<GcMusicNode> Incoming { set; get; }
     private HashSet<GcMusicNode> Outgoing { set; get; }
