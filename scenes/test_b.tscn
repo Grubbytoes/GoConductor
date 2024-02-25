@@ -12,9 +12,9 @@ script = ExtResource("1_288sn")
 
 [node name="music" parent="." instance=ExtResource("2_w55k3")]
 
-[node name="melody" parent="music" instance=ExtResource("2_l8bqd")]
+[node name="ebm" parent="music" instance=ExtResource("2_l8bqd")]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/melody"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/ebm"]
 stream = ExtResource("3_eh18w")
 
 [node name="backing" parent="music" instance=ExtResource("2_l8bqd")]

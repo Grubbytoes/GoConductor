@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://tog33y88x8cj"]
+
+[ext_resource type="Script" path="res://scenes/test_d.gd" id="1_4qomn"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicSwitch.cs" id="2_34x8t"]
+[ext_resource type="AudioStream" uid="uid://c66k7eirobaes" path="res://imports/music/ebm-song/bass.mp3" id="4_4yyoy"]
+[ext_resource type="PackedScene" uid="uid://duwrxlfsgbsvp" path="res://scenes/gc-nodes/GcMusicTrack.tscn" id="4_ji7qg"]
+[ext_resource type="AudioStream" uid="uid://dfstbh5qrs2w8" path="res://imports/music/Northstar.mp3" id="7_5auyu"]
+
+[node name="test_a" type="Node2D"]
+script = ExtResource("1_4qomn")
+
+[node name="music" type="Node" parent="."]
+script = ExtResource("2_34x8t")
+
+[node name="ebm" parent="music" instance=ExtResource("4_ji7qg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/ebm"]
+stream = ExtResource("4_4yyoy")
+
+[node name="northstar" parent="music" instance=ExtResource("4_ji7qg")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/northstar"]
+stream = ExtResource("7_5auyu")
+volume_db = 3.0
+
+[node name="trackSwitch" type="CheckButton" parent="."]
+offset_right = 44.0
+offset_bottom = 24.0
+button_pressed = true
+
+[connection signal="toggled" from="trackSwitch" to="." method="_on_track_switch_toggled"]

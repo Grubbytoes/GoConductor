@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Rickety ass skeleton code in place - obviously, untested and will probably catch fire">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_b.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_b.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_b.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_b.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +117,7 @@
       <workItem from="1708174890115" duration="5083000" />
       <workItem from="1708447069078" duration="1100000" />
       <workItem from="1708511186328" duration="1376000" />
-      <workItem from="1708867905391" duration="5079000" />
+      <workItem from="1708867905391" duration="6501000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -294,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708872811173</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!">
+      <option name="closed" value="true" />
+      <created>1708873371298</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1708873371298</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,6 +352,7 @@
     <MESSAGE value="More skeleton code" />
     <MESSAGE value="Changed how GcMusicNode.Gain works" />
     <MESSAGE value="Rickety ass skeleton code in place - obviously, untested and will probably catch fire" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rickety ass skeleton code in place - obviously, untested and will probably catch fire" />
+    <MESSAGE value="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!" />
   </component>
 </project>
