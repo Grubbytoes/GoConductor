@@ -8,13 +8,6 @@ namespace GoConductorPlugin.addons.go_conductor__.transition;
 ///
 /// This is ALL IT DOES, any updates to currently playing must be done by the parent
 /// </summary>
-
-/*
- * TODO
- * Making sure that gain is returned to its original value, might actually be a good idea to do that further up
- * TODO
- * Protect against unexpected behaviour if one transition is called in the middle of another
- */
 public partial class Fade : MusicTransition
 {
     public Fade(GcMusicNode parent, float duration) : base(parent, duration)
@@ -38,9 +31,9 @@ public partial class Fade : MusicTransition
             // * lower track volume
             // * start the track
             // * Add volume tweener
-            t.Gain -= 30f;
+            t.Gain = -30f; // Sometimes the best solution is the simplest...!
             t.Play();
-            TransitionTween.Parallel().TweenProperty(t, "Gain", 30, Duration).AsRelative();
+            TransitionTween.Parallel().TweenProperty(t, "Gain", 0, Duration);
         }
         
         // Add callbacks
@@ -50,8 +43,11 @@ public partial class Fade : MusicTransition
         TransitionTween.Play();
     }
 
+    /// <summary>
+    /// Kills the transition tween
+    /// </summary>
     public override void Kill()
     {
-        throw new System.NotImplementedException();
+        TransitionTween?.Kill();
     }
 }
