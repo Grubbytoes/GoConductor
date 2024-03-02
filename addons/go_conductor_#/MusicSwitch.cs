@@ -67,6 +67,9 @@ public partial class MusicSwitch: MultiMusicPlayer
         // But we are unlikely to be so lucky
         if (Playing)
         {
+            // Abort the transition if there is one in progress
+            Transition?.Kill();
+
             Transition = new Fade(this, 1f);
             Transition.AddIncomingTrack(newTrack);
             Transition.AddOutgoingTrack(CurrentlyPlaying);

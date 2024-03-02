@@ -38,9 +38,9 @@ public partial class Fade : MusicTransition
             // * lower track volume
             // * start the track
             // * Add volume tweener
-            t.Gain -= 30f;
+            t.Gain = -30f; // Sometimes the best solution is the simplest...!
             t.Play();
-            TransitionTween.Parallel().TweenProperty(t, "Gain", 30, Duration).AsRelative();
+            TransitionTween.Parallel().TweenProperty(t, "Gain", 0, Duration);
         }
         
         // Add callbacks
@@ -50,8 +50,11 @@ public partial class Fade : MusicTransition
         TransitionTween.Play();
     }
 
+    /// <summary>
+    /// Kills the transition tween
+    /// </summary>
     public override void Kill()
     {
-        throw new System.NotImplementedException();
+        TransitionTween?.Kill();
     }
 }
