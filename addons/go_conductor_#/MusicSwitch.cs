@@ -6,8 +6,10 @@ namespace GoConductorPlugin.addons.go_conductor__;
 
 public partial class MusicSwitch: MultiMusicPlayer
 {
+    private MusicTransition Transition;
     public GcMusicNode CurrentlyPlaying { get; private set; }
     public bool RestartOnRecue { get; set; }
+    
 
     public override float PlaybackPosition
     {
@@ -65,12 +67,12 @@ public partial class MusicSwitch: MultiMusicPlayer
         // But we are unlikely to be so lucky
         if (Playing)
         {
-            Fade fade = new Fade(this, 1f);
-            fade.AddIncomingTrack(newTrack);
-            fade.AddOutgoingTrack(CurrentlyPlaying);
+            Transition = new Fade(this, 1f);
+            Transition.AddIncomingTrack(newTrack);
+            Transition.AddOutgoingTrack(CurrentlyPlaying);
             
             // May god have mercy on our souls
-            fade.Start();
+            Transition.Start();
         }
         
         // Set the marker to the new track

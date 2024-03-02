@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test_b.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_b.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test_b.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_b.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +25,7 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/GcMusicNode.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MultiMusicPlayer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MultiMusicPlayer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MusicTrack.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Fade.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/MusicTransition.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -117,7 +112,8 @@
       <workItem from="1708174890115" duration="5083000" />
       <workItem from="1708447069078" duration="1100000" />
       <workItem from="1708511186328" duration="1376000" />
-      <workItem from="1708867905391" duration="6501000" />
+      <workItem from="1708867905391" duration="6887000" />
+      <workItem from="1709373079869" duration="2141000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -303,7 +299,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708873371298</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Early stages of testing">
+      <option name="closed" value="true" />
+      <created>1708874843119</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1708874843119</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Early stages of testing">
+      <option name="closed" value="true" />
+      <created>1708874856960</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1708874856960</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,6 +365,7 @@
     <MESSAGE value="Changed how GcMusicNode.Gain works" />
     <MESSAGE value="Rickety ass skeleton code in place - obviously, untested and will probably catch fire" />
     <MESSAGE value="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!" />
+    <MESSAGE value="Early stages of testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Early stages of testing" />
   </component>
 </project>
