@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Tidying&#10;&#10;* Base transition pushes a warning if started with no incoming and/or outgoing tracks&#10;* 2 new transitions added - not tested" />
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Tidying&#10;&#10;* Base transition pushes a warning if started with no incoming and/or outgoing tracks&#10;* 2 new transitions added - not tested">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_c.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_c.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.tscn" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,6 +28,7 @@
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Fade.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Fade.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Fade.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/FadeOutFadeIn.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -110,7 +116,7 @@
       <workItem from="1708447069078" duration="1100000" />
       <workItem from="1708511186328" duration="1376000" />
       <workItem from="1708867905391" duration="6887000" />
-      <workItem from="1709373079869" duration="5498000" />
+      <workItem from="1709373079869" duration="7266000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -352,7 +358,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709381592519</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Tidying&#10;&#10;* Base transition pushes a warning if started with no incoming and/or outgoing tracks&#10;* 2 new transitions added - not tested">
+      <option name="closed" value="true" />
+      <created>1709382373416</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1709382373416</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

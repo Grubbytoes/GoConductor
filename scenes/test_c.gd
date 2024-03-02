@@ -4,6 +4,7 @@ extends "res://scenes/test_universal.gd"
 
 func _ready():
 	music.Cue("ebm")
+	ebm.Cue("backing")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
