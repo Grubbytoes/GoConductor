@@ -29,7 +29,6 @@ public abstract partial class GcMusicNode : Node, IMusicController
     /// This is what we use to access volume, rather than prying into the leaf's AudioStreamPlayer's 'volume_db'
     /// Should be tidier this way... he says...
     /// </summary>
-    [Export(PropertyHint.Range, "-30, 18, 0.5")]
     public  virtual float Gain { get; set; }
 
     protected float PlayHead { get; set; }
@@ -67,8 +66,7 @@ public abstract partial class GcMusicNode : Node, IMusicController
             Play();
     }
 
-
-    // TODO This isn't working w/ MusicConductor
+    
     public virtual void PlayFrom(float position)
     {
         PlayHead = position;

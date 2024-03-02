@@ -10,29 +10,9 @@ namespace GoConductorPlugin.addons.go_conductor__.transition;
 /// </summary>
 public abstract partial class MusicTransition : Node
 {
-    /// <summary>
-    /// The set of all track come in in the transition
-    /// </summary>
-    protected HashSet<GcMusicNode> Incoming { private set; get; }
-    /// <summary>
-    /// The set of all tracks being stopped by this transition
-    /// </summary>
-    protected HashSet<GcMusicNode> Outgoing { private set; get; }
-    
-    /// <summary>
-    /// The node which called the transition
-    /// </summary>
-    public GcMusicNode Parent { get; private set; }
-    /// <summary>
-    /// How long the transition should last for
-    /// </summary>
-    public float Duration { get; set; }
-    
-    protected Tween TransitionTween { get; set; }
-
     [Signal]
     public delegate void DoneEventHandler();
-    
+
     public MusicTransition(GcMusicNode parent, float duration)
     {
         Parent = parent;
@@ -40,11 +20,43 @@ public abstract partial class MusicTransition : Node
         Incoming = new HashSet<GcMusicNode>();
         Outgoing = new HashSet<GcMusicNode>();
     }
-    
-    public abstract void Start();
 
-    public abstract void Kill();
-    
+    /// <summary>
+    /// The set of all track come in in the transition
+    /// </summary>
+    protected HashSet<GcMusicNode> Incoming { private set; get; }
+
+    /// <summary>
+    /// The set of all tracks being stopped by this transition
+    /// </summary>
+    protected HashSet<GcMusicNode> Outgoing { private set; get; }
+
+    /// <summary>
+    /// The node which called the transition
+    /// </summary>
+    public GcMusicNode Parent { get; private set; }
+
+    /// <summary>
+    /// How long the transition should last for
+    /// </summary>
+    public float Duration { get; set; }
+
+    protected Tween TransitionTween { get; set; }
+
+    public virtual void Start()
+    {
+        // Create a tween as a child of the parent
+        TransitionTween = Parent.CreateTween();
+    }
+
+    /// <summary>
+    /// Kills the transition tween
+    /// </summary>
+    public void Kill()
+    {
+        TransitionTween?.Kill();
+    }
+
     protected void TransitionDone()
     {
         // Stop all outgoing tracks

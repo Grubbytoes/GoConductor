@@ -9,6 +9,8 @@ public partial class MusicSwitch: MultiMusicPlayer
     private MusicTransition Transition;
     public GcMusicNode CurrentlyPlaying { get; private set; }
     public bool RestartOnRecue { get; set; }
+
+    [Export] public float TransitionTime = 1f;
     
 
     public override float PlaybackPosition
@@ -70,7 +72,7 @@ public partial class MusicSwitch: MultiMusicPlayer
             // Abort the transition if there is one in progress
             Transition?.Kill();
 
-            Transition = new Fade(this, 1f);
+            Transition = new Crossfade(this, TransitionTime);
             Transition.AddIncomingTrack(newTrack);
             Transition.AddOutgoingTrack(CurrentlyPlaying);
             

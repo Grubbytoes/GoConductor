@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="refactoring Staurday morning&#10;&#10;*added transition feild to switch&#10;*pulled several members up from fade to transition">
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" afterDir="false" />
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Wtf it somehow works&#10;&#10;Amazingly this is simpler than I thought it would be and I feel like a complete idiot">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/Fade.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_d.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_d.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +27,8 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Fade.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Fade.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Fade.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -110,7 +117,7 @@
       <workItem from="1708447069078" duration="1100000" />
       <workItem from="1708511186328" duration="1376000" />
       <workItem from="1708867905391" duration="6887000" />
-      <workItem from="1709373079869" duration="2553000" />
+      <workItem from="1709373079869" duration="3652000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -320,7 +327,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709378467270</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Wtf it somehow works&#10;&#10;Amazingly this is simpler than I thought it would be and I feel like a complete idiot">
+      <option name="closed" value="true" />
+      <created>1709378946402</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1709378946402</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Wtf it somehow works&#10;&#10;Amazingly this is simpler than I thought it would be and I feel like a complete idiot">
+      <option name="closed" value="true" />
+      <created>1709378970503</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1709378970503</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -346,7 +369,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Skeleton for conductor" />
     <MESSAGE value="Added PlaybackPosition to GcMusicNode.cs, implimented for MusicTrack.cs" />
     <MESSAGE value="Monday Morning&#10;&#10;* Added PlayFrom(position)&#10;* Added PlaybackPosition&#10;* Untested implimentation of conductor&#10;* Removed [export] from RestartOnRecue" />
     <MESSAGE value="Implimented PlaybackPosition getters for conductor and switch" />
@@ -371,6 +393,7 @@
     <MESSAGE value="It doesn't work, but it does SOMETHING without crashing...! So we can work on this!!!" />
     <MESSAGE value="Early stages of testing" />
     <MESSAGE value="refactoring Staurday morning&#10;&#10;*added transition feild to switch&#10;*pulled several members up from fade to transition" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring Staurday morning&#10;&#10;*added transition feild to switch&#10;*pulled several members up from fade to transition" />
+    <MESSAGE value="Wtf it somehow works&#10;&#10;Amazingly this is simpler than I thought it would be and I feel like a complete idiot" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wtf it somehow works&#10;&#10;Amazingly this is simpler than I thought it would be and I feel like a complete idiot" />
   </component>
 </project>

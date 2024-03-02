@@ -8,16 +8,15 @@ namespace GoConductorPlugin.addons.go_conductor__.transition;
 ///
 /// This is ALL IT DOES, any updates to currently playing must be done by the parent
 /// </summary>
-public partial class Fade : MusicTransition
+public partial class Crossfade : MusicTransition
 {
-    public Fade(GcMusicNode parent, float duration) : base(parent, duration)
+    public Crossfade(GcMusicNode parent, float duration) : base(parent, duration)
     {
     }
 
     public override void Start()
     {
-        // Create a tween as a child of the parent
-        TransitionTween = Parent.CreateTween();
+        base.Start();
         
         // Add all outgoing tracks to the tween
         foreach (var t in Outgoing)
@@ -41,13 +40,5 @@ public partial class Fade : MusicTransition
         
         // Let 'er rip!!!
         TransitionTween.Play();
-    }
-
-    /// <summary>
-    /// Kills the transition tween
-    /// </summary>
-    public override void Kill()
-    {
-        TransitionTween?.Kill();
     }
 }

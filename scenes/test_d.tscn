@@ -11,6 +11,7 @@ script = ExtResource("1_4qomn")
 
 [node name="music" type="Node" parent="."]
 script = ExtResource("2_34x8t")
+TransitionTime = 2.0
 
 [node name="ebm" parent="music" instance=ExtResource("4_ji7qg")]
 
