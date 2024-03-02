@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace GoConductorPlugin.addons.go_conductor__.transition;
@@ -45,6 +46,16 @@ public abstract partial class MusicTransition : Node
 
     public virtual void Start()
     {
+        // Warn if being started with empty incoming or outgoing set
+        if (Incoming.Count < 1)
+        {
+            GD.PushWarning("Transition being started with no incoming track(s) set");
+        }
+        if (Outgoing.Count < 1)
+        {
+            GD.PushWarning("Transition being started with no outgoing track(s) set");
+        }
+        
         // Create a tween as a child of the parent
         TransitionTween = Parent.CreateTween();
     }
