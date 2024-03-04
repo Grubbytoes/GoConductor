@@ -18,19 +18,19 @@ public abstract partial class MusicTransition : Node
     {
         Parent = parent;
         Duration = duration;
-        Incoming = new HashSet<GcMusicNode>();
-        Outgoing = new HashSet<GcMusicNode>();
+        Incoming = new HashSet<MusicTrack>();
+        Outgoing = new HashSet<MusicTrack>();
     }
 
     /// <summary>
     /// The set of all track come in in the transition
     /// </summary>
-    protected HashSet<GcMusicNode> Incoming { private set; get; }
+    protected HashSet<MusicTrack> Incoming { private set; get; }
 
     /// <summary>
     /// The set of all tracks being stopped by this transition
     /// </summary>
-    protected HashSet<GcMusicNode> Outgoing { private set; get; }
+    protected HashSet<MusicTrack> Outgoing { private set; get; }
 
     /// <summary>
     /// The node which called the transition
@@ -87,11 +87,24 @@ public abstract partial class MusicTransition : Node
     /// <returns>True if track added</returns>
     public virtual bool AddIncomingTrack(GcMusicNode musicNode)
     {
-        if (!Incoming.Contains(musicNode) && !Outgoing.Contains(musicNode))
+        // Check if the new node is a single track
+        if (musicNode is MusicTrack track)
         {
-            Incoming.Add(musicNode);
+            // Guard against duplicate tracks
+            if (Incoming.Contains(track) || Outgoing.Contains(track)) return false;
+            
+            // Add the track
+            Incoming.Add(track);
             return true;
         }
+        
+        // Else see if it is multi-track
+        if (musicNode is MultiMusicPlayer multiTrack)
+        {
+            return AddIncomingTrack(multiTrack);
+        }
+        
+        // Otherwise fail
         return false;
     }
 
@@ -102,11 +115,25 @@ public abstract partial class MusicTransition : Node
     /// <returns>True if track added</returns>
     public virtual bool AddOutgoingTrack(GcMusicNode musicNode)
     {
-        if (!Outgoing.Contains(musicNode) && !Incoming.Contains(musicNode))
+        // Check if the new node is a single track
+        if (musicNode is MusicTrack track)
         {
-            Outgoing.Add(musicNode);
+            // Guard against duplicate tracks
+            if (Incoming.Contains(track) || Outgoing.Contains(track)) return false;
+            
+            // Add the track
+            Outgoing.Add(track);
             return true;
         }
+        
+        // Else see if it is multi-track
+        if (musicNode is MultiMusicPlayer multiTrack)
+        {
+            GD.Print("BEEP");
+            return AddOutgoingTrack(multiTrack);
+        }
+        
+        // Otherwise fail
         return false;
     }
 
@@ -123,7 +150,7 @@ public abstract partial class MusicTransition : Node
 
         foreach (GcMusicNode t in musicTrack.GetAllTracks())
         {
-            addedOk = (addedOk && AddIncomingTrack((GcMusicNode)(MultiMusicPlayer)t));
+            addedOk = (addedOk && AddIncomingTrack((MusicTrack)(GcMusicNode)(MultiMusicPlayer)t));
         }
 
         return addedOk;
@@ -141,7 +168,7 @@ public abstract partial class MusicTransition : Node
 
         foreach (GcMusicNode t in musicTrack.GetAllTracks())
         {
-            addedOk = (addedOk && AddOutgoingTrack((GcMusicNode)(MultiMusicPlayer)t));
+            addedOk = (addedOk && AddOutgoingTrack((MusicTrack)(GcMusicNode)(MultiMusicPlayer)t));
         }
 
         return addedOk;

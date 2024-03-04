@@ -25,12 +25,6 @@ public abstract partial class GcMusicNode : Node, IMusicController
     /// </summary>
     public bool Playing { get; set; }
 
-    /// <summary>
-    /// This is what we use to access volume, rather than prying into the leaf's AudioStreamPlayer's 'volume_db'
-    /// Should be tidier this way... he says...
-    /// </summary>
-    public  virtual float Gain { get; set; }
-
     protected float PlayHead { get; set; }
 
     public virtual void Play()

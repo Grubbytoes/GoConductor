@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Tidying&#10;&#10;* Base transition pushes a warning if started with no incoming and/or outgoing tracks&#10;* 2 new transitions added - not tested">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test_c.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test_c.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/GcMusicNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/FadeOutFadeIn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/FadeOutFadeIn.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +117,8 @@
       <workItem from="1708447069078" duration="1100000" />
       <workItem from="1708511186328" duration="1376000" />
       <workItem from="1708867905391" duration="6887000" />
-      <workItem from="1709373079869" duration="7266000" />
+      <workItem from="1709373079869" duration="8146000" />
+      <workItem from="1709548479505" duration="355000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -366,7 +368,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709382373416</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="About to do some serious FAFO god save us all">
+      <option name="closed" value="true" />
+      <created>1709384103488</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1709384103488</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,7 +402,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Implimented PlaybackPosition getters for conductor and switch" />
     <MESSAGE value="Conductor implemented untested" />
     <MESSAGE value="CONDUCTOR WORKS!!!!! I'M GONNA CUM" />
     <MESSAGE value="Added TogglePlay alias for TogglePause" />
@@ -417,6 +426,7 @@
     <MESSAGE value="Wtf it somehow works&#10;&#10;Amazingly this is simpler than I thought it would be and I feel like a complete idiot" />
     <MESSAGE value="Tidying + skeleton code for other transitions" />
     <MESSAGE value="Tidying&#10;&#10;* Base transition pushes a warning if started with no incoming and/or outgoing tracks&#10;* 2 new transitions added - not tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tidying&#10;&#10;* Base transition pushes a warning if started with no incoming and/or outgoing tracks&#10;* 2 new transitions added - not tested" />
+    <MESSAGE value="About to do some serious FAFO god save us all" />
+    <option name="LAST_COMMIT_MESSAGE" value="About to do some serious FAFO god save us all" />
   </component>
 </project>

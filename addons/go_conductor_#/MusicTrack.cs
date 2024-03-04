@@ -18,8 +18,12 @@ public partial class MusicTrack : GcMusicNode
         get => AudioPlayer.GetPlaybackPosition();
         set => AudioPlayer.Seek(value);
     }
-
-    public override float Gain
+    
+    /// <summary>
+    /// This is what we use to access volume, rather than prying into the AudioStreamPlayer's 'volume_db'
+    /// Should be tidier this way... he says...
+    /// </summary>
+    public float Gain
     {
         get => _gain;
         set

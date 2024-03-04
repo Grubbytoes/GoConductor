@@ -15,7 +15,7 @@ public partial class FadeOutFadeIn : MusicTransition
         // We want the first of each not to be parallel, then all the subsequent ones to be parallel w/ the first
         var outE = Outgoing.GetEnumerator();
         var inE = Incoming.GetEnumerator();
-        GcMusicNode t;
+        MusicTrack t;
         
         // Fade tracks out - add to tween
         t = outE.Current;
