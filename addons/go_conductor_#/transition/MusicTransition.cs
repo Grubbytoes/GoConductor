@@ -63,7 +63,7 @@ public abstract partial class MusicTransition : Node
     /// <summary>
     /// Kills the transition tween
     /// </summary>
-    public void Kill()
+    public virtual void Kill()
     {
         TransitionTween?.Kill();
     }
