@@ -58,6 +58,9 @@ public abstract partial class MusicTransition : Node
         
         // Create a tween as a child of the parent
         TransitionTween = Parent.CreateTween();
+        
+        // Add callbacks
+        TransitionTween.TweenCallback(Callable.From(TransitionDone));
     }
 
     /// <summary>

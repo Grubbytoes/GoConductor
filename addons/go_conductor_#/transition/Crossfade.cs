@@ -35,9 +35,6 @@ public partial class Crossfade : MusicTransition
             TransitionTween.Parallel().TweenProperty(t, "Gain", 0, Duration);
         }
         
-        // Add callbacks
-        TransitionTween.TweenCallback(Callable.From(TransitionDone));
-        
         // Let 'er rip!!!
         TransitionTween.Play();
     }
