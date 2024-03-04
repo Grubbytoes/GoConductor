@@ -6,6 +6,7 @@ namespace GoConductorPlugin.addons.go_conductor__;
 public partial class MusicConductor : MultiMusicPlayer
 {
     private List<GcMusicNode> TracksCurrentlyPlaying { get; set; }
+    
     // Basically the first element in TracksCurrentlyPlaying is the lead
     public GcMusicNode LeadTrack
     {
@@ -50,6 +51,8 @@ public partial class MusicConductor : MultiMusicPlayer
     /// <returns>True if track successfully found and acted upon</returns>
     public override bool Cue(string trackName)
     {
+        DebugPrint("Cueing " + trackName);
+        
         // Try cueing the track
         bool success = CueIn(trackName);
         
@@ -61,6 +64,11 @@ public partial class MusicConductor : MultiMusicPlayer
         
         // If either was successful, success should be true
         return success;
+    }
+
+    public override IEnumerable<GcMusicNode> GetVisibleTracks()
+    {
+        throw new System.NotImplementedException();
     }
 
     /// <summary>

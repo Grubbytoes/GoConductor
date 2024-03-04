@@ -18,7 +18,6 @@ public abstract partial class MultiMusicPlayer : GcMusicNode
     {
         foreach (var child in GetChildren())
         {
-            DebugPrint("adding " + child.Name);
             TrackDictionary.Add(child.Name, child as GcMusicNode);
         }
     }
@@ -50,11 +49,13 @@ public abstract partial class MultiMusicPlayer : GcMusicNode
         */
     }
 
+    public abstract IEnumerable<GcMusicNode> GetVisibleTracks();
+
     /// <summary>
     /// Returns an enumerator of all child tracks, 
     /// </summary>
     /// <returns></returns>
-    public IEnumerable<GcMusicNode> GetAllTracks()
+    protected IEnumerable<GcMusicNode> GetAllTracks()
     {
         return TrackDictionary.Values;
     }

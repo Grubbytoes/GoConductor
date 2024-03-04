@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GoConductorPlugin.addons.go_conductor__.transition;
 using Godot;
 
@@ -22,7 +23,6 @@ public partial class MusicSwitch: MultiMusicPlayer
     public override void Play()
     {
         base.Play();
-        DebugPrint("playing " + CurrentlyPlaying.Name);
         CurrentlyPlaying.Play();
     }
 
@@ -88,5 +88,8 @@ public partial class MusicSwitch: MultiMusicPlayer
         return true;
     }
 
-
+    public override IEnumerable<GcMusicNode> GetVisibleTracks()
+    {
+        throw new NotImplementedException();
+    }
 }

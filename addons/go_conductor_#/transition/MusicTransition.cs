@@ -148,7 +148,7 @@ public abstract partial class MusicTransition : Node
     {
         bool addedOk = true;
 
-        foreach (GcMusicNode t in musicTrack.GetAllTracks())
+        foreach (GcMusicNode t in musicTrack.GetVisibleTracks())
         {
             addedOk = (addedOk && AddIncomingTrack(t));
         }
@@ -166,7 +166,7 @@ public abstract partial class MusicTransition : Node
     {
         bool addedOk = true;
 
-        foreach (GcMusicNode t in musicTrack.GetAllTracks())
+        foreach (GcMusicNode t in musicTrack.GetVisibleTracks())
         {
             addedOk = (addedOk && AddOutgoingTrack(t));
         }
