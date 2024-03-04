@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="JIMMINY JESUS IT WORKS&#10;&#10;* The only problem was just a load of unnecessary casting that I think Rider had added automatically">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" afterDir="false" />
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="FAFO Changed how multitrack add incoming/outgoing tracks works&#10;&#10;Now calls an as yet unimplemented method of the multi-track player - &quot;get visible tracks&quot;">
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scenes/test_c.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.gd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,7 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MultiMusicPlayer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/FadeOutFadeIn.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/MusicTransition.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -117,7 +114,7 @@
       <workItem from="1708511186328" duration="1376000" />
       <workItem from="1708867905391" duration="6887000" />
       <workItem from="1709373079869" duration="8146000" />
-      <workItem from="1709548479505" duration="2113000" />
+      <workItem from="1709548479505" duration="2669000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -391,7 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709549299640</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="FAFO Changed how multitrack add incoming/outgoing tracks works&#10;&#10;Now calls an as yet unimplemented method of the multi-track player - &quot;get visible tracks&quot;">
+      <option name="closed" value="true" />
+      <created>1709550853079</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1709550853079</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +422,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added TogglePlay alias for TogglePause" />
     <MESSAGE value="Revert &quot;Added TogglePlay alias for TogglePause&quot;&#10;&#10;This reverts commit d94c8f7c" />
     <MESSAGE value="Added proto-skeleton for transition" />
     <MESSAGE value="Playback position properties changed" />
@@ -442,6 +446,7 @@
     <MESSAGE value="About to do some serious FAFO god save us all" />
     <MESSAGE value="Monday morning - god save us all&#10;&#10;I dont' wanna go to chalk lmao" />
     <MESSAGE value="JIMMINY JESUS IT WORKS&#10;&#10;* The only problem was just a load of unnecessary casting that I think Rider had added automatically" />
-    <option name="LAST_COMMIT_MESSAGE" value="JIMMINY JESUS IT WORKS&#10;&#10;* The only problem was just a load of unnecessary casting that I think Rider had added automatically" />
+    <MESSAGE value="FAFO Changed how multitrack add incoming/outgoing tracks works&#10;&#10;Now calls an as yet unimplemented method of the multi-track player - &quot;get visible tracks&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="FAFO Changed how multitrack add incoming/outgoing tracks works&#10;&#10;Now calls an as yet unimplemented method of the multi-track player - &quot;get visible tracks&quot;" />
   </component>
 </project>

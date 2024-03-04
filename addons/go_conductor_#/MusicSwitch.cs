@@ -88,8 +88,12 @@ public partial class MusicSwitch: MultiMusicPlayer
         return true;
     }
 
+    /// <summary>
+    /// Returns which ever track is set to currently playing, all others should be hidden
+    /// </summary>
+    /// <returns></returns>
     public override IEnumerable<GcMusicNode> GetVisibleTracks()
     {
-        throw new NotImplementedException();
+        return new[] { CurrentlyPlaying };
     }
 }

@@ -68,7 +68,7 @@ public partial class MusicConductor : MultiMusicPlayer
 
     public override IEnumerable<GcMusicNode> GetVisibleTracks()
     {
-        throw new System.NotImplementedException();
+        return TracksCurrentlyPlaying;
     }
 
     /// <summary>
