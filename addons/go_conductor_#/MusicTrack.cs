@@ -6,6 +6,7 @@ namespace GoConductorPlugin.addons.go_conductor__;
 public partial class MusicTrack : GcMusicNode
 {
     private float _gain;
+    private string busBuff;
     
     private Tween VolumeTween { get; set; }
     private AudioStreamPlayer AudioPlayer { get; set; }
@@ -101,6 +102,38 @@ public partial class MusicTrack : GcMusicNode
         {
             Stop();
         }
+    }
+
+    /// <summary>
+    /// Assigns the track to a temporary bus
+    ///
+    /// Whichever bus the track was already assigned to will be saved in a buffer, and reset to next time ResetBus()
+    /// is called.
+    /// </summary>
+    /// <param name="idx">The bus index</param>
+    public void SetTemporaryBus(int idx)
+    {
+        // Save current bus
+        busBuff = AudioPlayer.Bus;
+        
+        // Get the new bus
+        string newBusName = AudioServer.GetBusName(idx);
+        AudioPlayer.Bus = newBusName;
+    }
+
+    /// <summary>
+    /// Resets the bus to that which is stored in the buffer, if one is
+    ///
+    /// If the buffer is empty, it returns false
+    /// </summary>
+    /// <returns>True if successful</returns>
+    public bool ResetBus()
+    {
+        if (busBuff != null) return false;
+
+        AudioPlayer.Bus = busBuff;
+        busBuff = null;
+        return true;
     }
 
     private bool VolumeTweenInUse()

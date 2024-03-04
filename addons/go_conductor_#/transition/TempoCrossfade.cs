@@ -6,6 +6,7 @@ public partial class TempoCrossfade : MusicTransition
 {
     private int OutgoingBusIdx { set; get; }
     private int IncomingBusIdx { set; get; }
+    private bool TracksSetToBusses;
     
     public TempoCrossfade(GcMusicNode parent, float duration) : base(parent, duration)
     {
@@ -34,7 +35,34 @@ public partial class TempoCrossfade : MusicTransition
 
     private void TeardownBusses()
     {
+        foreach (var t in Outgoing)
+        {
+            t.ResetBus();
+        }
+
+        foreach (var t in Incoming)
+        {
+            t.ResetBus();
+        }
+        
         AudioServer.RemoveBus(OutgoingBusIdx);
         AudioServer.RemoveBus(IncomingBusIdx);
+    }
+
+    private void SetTracksToBusses()
+    {
+        if (TracksSetToBusses) {return;}
+
+        foreach (var t in Outgoing)
+        {
+            t.SetTemporaryBus(OutgoingBusIdx);
+        }
+
+        foreach (var t in Incoming)
+        {
+            t.SetTemporaryBus(IncomingBusIdx);
+        }
+
+        TracksSetToBusses = true;
     }
 }
