@@ -27,6 +27,6 @@ public partial class HardCut : MusicTransition
         }
         
         // Done
-        TransitionDone();
+        CloseTween();
     }
 }

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Skeleton code for tempo transition&#10;&#10;Really need to start thinking about that demo...">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicTrack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/TempoCrossfade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/TempoCrossfade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/Crossfade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/Crossfade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_c.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +117,8 @@
       <workItem from="1708511186328" duration="1376000" />
       <workItem from="1708867905391" duration="6887000" />
       <workItem from="1709373079869" duration="8146000" />
-      <workItem from="1709548479505" duration="5196000" />
+      <workItem from="1709548479505" duration="6187000" />
+      <workItem from="1709978558614" duration="637000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -414,7 +416,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709552737192</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Fleshed out (heh) skeleton code for tempo transition">
+      <option name="closed" value="true" />
+      <created>1709555346463</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1709555346463</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Pulled up callback assignment to abstract transition.Start()">
+      <option name="closed" value="true" />
+      <created>1709555418854</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1709555418854</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -440,8 +458,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Playback position properties changed" />
-    <MESSAGE value="omahgawd exporting properties works now&#10;&#10;For future reference, NO properties can have missing setters, even if the setters don't do anything." />
     <MESSAGE value="Thursday evening &#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping" />
     <MESSAGE value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
     <MESSAGE value="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me" />
@@ -465,6 +481,8 @@
     <MESSAGE value="FAFO Changed how multitrack add incoming/outgoing tracks works&#10;&#10;Now calls an as yet unimplemented method of the multi-track player - &quot;get visible tracks&quot;" />
     <MESSAGE value="Wowzers trousers it works" />
     <MESSAGE value="Skeleton code for tempo transition&#10;&#10;Really need to start thinking about that demo..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Skeleton code for tempo transition&#10;&#10;Really need to start thinking about that demo..." />
+    <MESSAGE value="Fleshed out (heh) skeleton code for tempo transition" />
+    <MESSAGE value="Pulled up callback assignment to abstract transition.Start()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pulled up callback assignment to abstract transition.Start()" />
   </component>
 </project>

@@ -21,7 +21,7 @@ public partial class Crossfade : MusicTransition
         // Add all outgoing tracks to the tween
         foreach (var t in Outgoing)
         {
-            TransitionTween.Parallel().TweenProperty(t, "Gain", -30, Duration).AsRelative();
+            TransitionTween.Parallel().TweenProperty(t, "Gain", -30, Duration);
         }
         
         // Add all incoming tracks to the tween
@@ -36,6 +36,7 @@ public partial class Crossfade : MusicTransition
         }
         
         // Let 'er rip!!!
+        CloseTween();
         TransitionTween.Play();
     }
 }

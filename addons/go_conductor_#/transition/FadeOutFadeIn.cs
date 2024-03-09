@@ -37,7 +37,7 @@ public partial class FadeOutFadeIn : MusicTransition
         }
         
         // Done
-        TransitionDone();
+        CloseTween();
         outE.Dispose();
         inE.Dispose();
     }

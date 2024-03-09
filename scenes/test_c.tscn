@@ -13,6 +13,7 @@ script = ExtResource("1_iqwl8")
 
 [node name="music" type="Node" parent="."]
 script = ExtResource("3_udhnm")
+TransitionTime = 3.0
 
 [node name="northstar" parent="music" instance=ExtResource("3_vxqq0")]
 

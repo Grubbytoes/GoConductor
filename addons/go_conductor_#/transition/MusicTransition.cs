@@ -58,7 +58,10 @@ public abstract partial class MusicTransition : Node
         
         // Create a tween as a child of the parent
         TransitionTween = Parent.CreateTween();
-        
+    }
+
+    protected void CloseTween()
+    {
         // Add callbacks
         TransitionTween.TweenCallback(Callable.From(TransitionDone));
     }
@@ -71,7 +74,7 @@ public abstract partial class MusicTransition : Node
         TransitionTween?.Kill();
     }
 
-    protected void TransitionDone()
+    private void TransitionDone()
     {
         // Stop all outgoing tracks
         foreach (var t in Outgoing)
@@ -80,6 +83,7 @@ public abstract partial class MusicTransition : Node
         }
         
         // Send the signal, baby!
+        GD.Print("DONE");
         EmitSignal(MusicTransition.SignalName.Done);
     }
 
