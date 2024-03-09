@@ -77,6 +77,10 @@ public abstract partial class MusicTransition : Node
     public virtual void Kill()
     {
         TransitionTween?.Kill();
+        foreach (var t in Outgoing)
+        {
+            t.Stop();
+        }
     }
 
     private void TransitionDone()
