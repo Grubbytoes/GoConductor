@@ -13,13 +13,4 @@ func _process(delta):
 
 
 func _on_option_button_item_selected(index):
-	print("ping")
-	match index:
-		0:
-			music.Cue("northstar")
-		1:
-			music.Cue("ebm")
-		2:
-			music.Cue("tangerine")
-		_:
-			music.Cue("northstar")
+	music.Cue(index)

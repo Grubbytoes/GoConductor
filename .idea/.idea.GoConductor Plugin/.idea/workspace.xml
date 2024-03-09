@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="That was an easy fix lmao">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="tidy tidy tidy">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicConductor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/MusicSwitch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_c.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.gd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +119,7 @@
       <workItem from="1708867905391" duration="6887000" />
       <workItem from="1709373079869" duration="8146000" />
       <workItem from="1709548479505" duration="6187000" />
-      <workItem from="1709978558614" duration="2876000" />
+      <workItem from="1709978558614" duration="5194000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -454,7 +457,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709981038849</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="tidy tidy tidy">
+      <option name="closed" value="true" />
+      <created>1709982587693</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1709982587693</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -480,7 +491,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Fixed problem with stop not working&#10;&#10;* DO NOT USE PLAYBACKPOSITION INTERNALLY IT IS NOT WORTH IT" />
     <MESSAGE value="Wednesday morning &#10;&#10;* Changed MusicConductor.PlayFrom, works now in non edge cases&#10;* Made Cue abstract method of MultiMusicPlayer.cs, implemented to MusicConductor.cs, untested&#10;* Exported gain&#10;* Want to make track generate its own audio stream player" />
     <MESSAGE value="Nvm it was" />
     <MESSAGE value="Tweaks of MultiMusicPlayer.cs ready for Transition skeleton code&#10;&#10;* Made GetTrack public&#10;* Added GetAllTracks" />
@@ -505,6 +515,26 @@
     <MESSAGE value="Saturday morning&#10;&#10;* Added closetween to Transition, might do some more hiding of the actual tween if I'm feeling brave/it becomes obviously a good idea" />
     <MESSAGE value="PROBLEM&#10;&#10;music switch does not propely stop stacks when quickly transitioning between more than 2" />
     <MESSAGE value="That was an easy fix lmao" />
-    <option name="LAST_COMMIT_MESSAGE" value="That was an easy fix lmao" />
+    <MESSAGE value="tidy tidy tidy" />
+    <option name="LAST_COMMIT_MESSAGE" value="tidy tidy tidy" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/addons/go_conductor_#/MultiMusicPlayer.cs</url>
+          <line>43</line>
+          <properties documentPath="C:\Users\Hugo\Documents\Code\Godot Projects\GoConductor Plugin\addons\go_conductor_#\MultiMusicPlayer.cs" initialLine="43" containingFunctionPresentation="Method 'Cue'">
+            <startOffsets>
+              <option value="1160" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1177" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

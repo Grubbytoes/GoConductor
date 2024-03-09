@@ -42,23 +42,60 @@ public partial class MusicConductor : MultiMusicPlayer
     /// <summary>
     /// Cues the track if it is not playing, cues out if it is
     /// </summary>
-    /// <param name="trackName">Name of the track</param>
+    /// <param name="newTrack">Name of the track</param>
     /// <returns>True if track successfully found and acted upon</returns>
-    public override bool Cue(string trackName)
+    public override bool Cue(GcMusicNode newTrack)
     {
-        DebugPrint("Cueing " + trackName);
-        
         // Try cueing the track
-        bool success = CueIn(trackName);
+        bool success = CueIn(newTrack);
         
         // If that didn't work, maybe its already playing
         if (!success)
         {
-            success = CueOut(trackName);
+            success = CueOut(newTrack);
         }
         
         // If either was successful, success should be true
         return success;
+    }
+
+    private bool CueOut(GcMusicNode newTrack)
+    {
+        int trackOutIdx = TracksCurrentlyPlaying.IndexOf(newTrack);
+
+        if (trackOutIdx < 0)
+        {
+            return false;
+        }
+        
+        newTrack.Stop();
+        TracksCurrentlyPlaying.RemoveAt(trackOutIdx);
+        return true;
+    }
+
+    private bool CueIn(GcMusicNode newTrack)
+    {
+        // Track not found or track already playing
+        if (newTrack == null || TracksCurrentlyPlaying.Contains(newTrack) )
+        {
+            return false;
+        }
+        
+        // Append track to currently playing, so we can see it later
+        TracksCurrentlyPlaying.Add(newTrack);
+        
+        // Do we need to play the track?
+        if (Playing)
+        {
+            newTrack.PlayFrom(PlaybackPosition);
+        }
+        else
+        {
+            // I changed this from playhead, if it breaks in the future
+            newTrack.PlaybackPosition = PlaybackPosition;
+        }
+
+        return true;
     }
 
     public override IEnumerable<GcMusicNode> GetVisibleTracks()
@@ -73,29 +110,8 @@ public partial class MusicConductor : MultiMusicPlayer
     /// <returns>True if track successfully found and added to arrangement</returns>
     public bool CueIn(string trackName)
     {
-        GcMusicNode trackIn = GetTrack(trackName);
-        
-        // Track not found or track already playing
-        if (trackIn == null || TracksCurrentlyPlaying.Contains(trackIn) )
-        {
-            return false;
-        }
-        
-        // Append track to currently playing, so we can see it later
-        TracksCurrentlyPlaying.Add(trackIn);
-        
-        // Do we need to play the track?
-        if (Playing)
-        {
-            trackIn.PlayFrom(PlaybackPosition);
-        }
-        else
-        {
-            // I changed this from playhead, if it breaks in the future
-            trackIn.PlaybackPosition = PlaybackPosition;
-        }
-
-        return true;
+        GcMusicNode newTrack = GetTrack(trackName);
+        return CueIn(newTrack);
     }
 
     /// <summary>
@@ -105,17 +121,8 @@ public partial class MusicConductor : MultiMusicPlayer
     /// <returns>True if found and removed from arrangement successfully</returns>
     public bool CueOut(string trackName)
     {
-        GcMusicNode trackOut = GetTrack(trackName);
-        int trackOutIdx = TracksCurrentlyPlaying.IndexOf(trackOut);
-
-        if (trackOutIdx < 0)
-        {
-            return false;
-        }
-        
-        trackOut.Stop();
-        TracksCurrentlyPlaying.RemoveAt(trackOutIdx);
-        return true;
+        GcMusicNode newTrack = GetTrack(trackName);
+        return CueOut(newTrack);
     }
 
     public override void Play()

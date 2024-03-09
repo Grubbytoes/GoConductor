@@ -46,12 +46,11 @@ public partial class MusicSwitch: MultiMusicPlayer
     /// <summary>
     /// Cues the song of the given name, if it exists as a child
     /// </summary>
-    /// <param name="trackName">Name of the track as it exists as a node</param>
+    /// <param name="newTrack">Name of the track as it exists as a node</param>
     /// <returns>true if track changed as a result </returns>
-    public override bool Cue(String trackName)
+    public override bool Cue(GcMusicNode newTrack)
     {
-        // Get the track
-        GcMusicNode newTrack = GetTrack(trackName);
+        GD.Print("PONG!!!");
         
         // Exit if new track is null
         if (newTrack == null)

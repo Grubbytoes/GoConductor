@@ -6,25 +6,6 @@ namespace GoConductorPlugin.addons.go_conductor__;
 
 public abstract partial class MultiMusicPlayer : GcMusicNode
 {
-    private Dictionary<String, GcMusicNode> TrackDictionary { get; set; }
-
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-        TrackDictionary = new Dictionary<string, GcMusicNode>();
-    }
-
-    public override void _Ready()
-    {
-        foreach (var child in GetChildren())
-        {
-            TrackDictionary.Add(child.Name, child as GcMusicNode);
-        }
-    }
-
-    public abstract bool Cue(String trackName);
-
-    
     /// <summary>
     /// Finds the track of the given name
     /// </summary>
@@ -32,31 +13,45 @@ public abstract partial class MultiMusicPlayer : GcMusicNode
     /// <returns>The track, or null if it cannot be found</returns>
     public GcMusicNode GetTrack(String trackName)
     {
-        // I haven't been using c# long enough to know exatly what this does
-        // but my IDE said it was a good idea
-        return TrackDictionary.TryGetValue(trackName, out var track) ? track : null;
-        /*
-        Here's what it looked like before:
-        
-        if (TrackDictionary.TryGetValue(trackName, out var track))
+        var found = GetNode(trackName);
+
+        if (found is GcMusicNode track)
         {
             return track;
         }
-        else
-        {
-            return null;
-        }
-        */
-    }
 
-    public abstract IEnumerable<GcMusicNode> GetVisibleTracks();
+        return null;
+    }
 
     /// <summary>
-    /// Returns an enumerator of all child tracks, 
+    /// Finds the track of the given index. Note that indexing INCLUDES any NON track children of the conductor, if any
+    /// exists.
     /// </summary>
-    /// <returns></returns>
-    protected IEnumerable<GcMusicNode> GetAllTracks()
+    /// <param name="idx"></param>
+    /// <returns>The track, or null if the index is out of bounds, or points to a non track node</returns>
+    public GcMusicNode GetTrack(int idx)
     {
-        return TrackDictionary.Values;
+        if (idx < GetChildCount() && GetChild(idx) is GcMusicNode track)
+        {
+            return track;
+        }
+
+        return null;
     }
+
+    public bool Cue(String trackName)
+    {
+        GD.Print("PING");
+        var track = GetTrack(trackName);
+        return track != null && Cue(track);
+    }
+
+    public bool Cue(int idx)
+    {
+        var track = GetTrack(idx);
+        return track != null && Cue(track);
+    }
+
+    public abstract bool Cue(GcMusicNode trackName);
+    public abstract IEnumerable<GcMusicNode> GetVisibleTracks();
 }
