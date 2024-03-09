@@ -60,6 +60,11 @@ public abstract partial class MusicTransition : Node
         TransitionTween = Parent.CreateTween();
     }
 
+    /// <summary>
+    /// To be called after all desired tweeners have been added to the tween, adds the callback.
+    /// You CAN continue to append tweeners - but they will be after effects, this marks the point at which the transition
+    /// is considered done and the closing signal is emmited.
+    /// </summary>
     protected void CloseTween()
     {
         // Add callbacks

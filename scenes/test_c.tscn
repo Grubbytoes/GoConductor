@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bor54x4av3pro"]
+[gd_scene load_steps=11 format=3 uid="uid://bor54x4av3pro"]
 
 [ext_resource type="Script" path="res://scenes/test_c.gd" id="1_iqwl8"]
 [ext_resource type="PackedScene" uid="uid://cbw1sp2xvdsqf" path="res://scenes/gc-nodes/GcMusicConductor.tscn" id="2_gos7b"]
@@ -7,13 +7,15 @@
 [ext_resource type="AudioStream" uid="uid://c66k7eirobaes" path="res://imports/music/ebm-song/bass.mp3" id="6_8e73w"]
 [ext_resource type="AudioStream" uid="uid://balw6nrbk6yu1" path="res://imports/music/ebm-song/drums.mp3" id="7_5s0b4"]
 [ext_resource type="AudioStream" uid="uid://dfstbh5qrs2w8" path="res://imports/music/Northstar.mp3" id="7_bqerq"]
+[ext_resource type="Script" path="res://addons/go_conductor_#/MusicConductor.cs" id="8_rpir8"]
+[ext_resource type="AudioStream" uid="uid://cjdmgykpg0ut7" path="res://imports/music/tangerine-song/backing.mp3" id="9_uxpk1"]
+[ext_resource type="AudioStream" uid="uid://b4dfcwttl0ju" path="res://imports/music/tangerine-song/melody.mp3" id="10_q0ae3"]
 
 [node name="test_a" type="Node2D"]
 script = ExtResource("1_iqwl8")
 
 [node name="music" type="Node" parent="."]
 script = ExtResource("3_udhnm")
-TransitionTime = 3.0
 
 [node name="northstar" parent="music" instance=ExtResource("3_vxqq0")]
 
@@ -33,8 +35,31 @@ stream = ExtResource("6_8e73w")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/ebm/backing"]
 stream = ExtResource("7_5s0b4")
 
-[node name="trackSwitch" type="CheckButton" parent="."]
-offset_right = 44.0
-offset_bottom = 24.0
+[node name="tangerine" type="Node" parent="music"]
+script = ExtResource("8_rpir8")
 
-[connection signal="toggled" from="trackSwitch" to="." method="_on_track_switch_toggled"]
+[node name="backing" parent="music/tangerine" instance=ExtResource("3_vxqq0")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/tangerine/backing"]
+stream = ExtResource("9_uxpk1")
+
+[node name="melody" parent="music/tangerine" instance=ExtResource("3_vxqq0")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="music/tangerine/melody"]
+stream = ExtResource("10_q0ae3")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+offset_left = 384.0
+offset_top = 64.0
+offset_right = 576.0
+offset_bottom = 95.0
+item_count = 3
+selected = 0
+popup/item_0/text = "northstar"
+popup/item_0/id = 0
+popup/item_1/text = "ebm"
+popup/item_1/id = 1
+popup/item_2/text = "tangerine"
+popup/item_2/id = 2
+
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="">
+    <list default="true" id="8e81a08b-300b-43fd-bb29-aecc22e2ff98" name="Changes" comment="Saturday morning&#10;&#10;* Added closetween to Transition, might do some more hiding of the actual tween if I'm feeling brave/it becomes obviously a good idea">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GoConductor Plugin/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/Crossfade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/Crossfade.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/go_conductor_#/transition/MusicTransition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scenes/test_c.gd" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.gd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scenes/test_c.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/scenes/test_c.tscn" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,9 +25,7 @@
     <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MultiMusicPlayer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/MusicConductor.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/FadeOutFadeIn.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/Crossfade.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Hugo/Documents/Code/Godot Projects/GoConductor Plugin/addons/go_conductor_#/transition/MusicTransition.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -118,7 +116,7 @@
       <workItem from="1708867905391" duration="6887000" />
       <workItem from="1709373079869" duration="8146000" />
       <workItem from="1709548479505" duration="6187000" />
-      <workItem from="1709978558614" duration="637000" />
+      <workItem from="1709978558614" duration="2062000" />
     </task>
     <task id="LOCAL-00001" summary="MusicTrack Works">
       <option name="closed" value="true" />
@@ -432,7 +430,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709555418854</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Saturday morning&#10;&#10;* Added closetween to Transition, might do some more hiding of the actual tween if I'm feeling brave/it becomes obviously a good idea">
+      <option name="closed" value="true" />
+      <created>1709979358412</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1709979358412</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +464,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Thursday evening &#10;&#10;* Track now fades when paused&#10;* Skeleton code added for looping" />
     <MESSAGE value="Added debug print for GcMusicNode&#10;&#10;also some comments" />
     <MESSAGE value="Mild refactoring on the way to a bigger solution&#10;&#10;I am begging someone to kill me" />
     <MESSAGE value="Fixed problem with stop not working&#10;&#10;* DO NOT USE PLAYBACKPOSITION INTERNALLY IT IS NOT WORTH IT" />
@@ -483,6 +488,7 @@
     <MESSAGE value="Skeleton code for tempo transition&#10;&#10;Really need to start thinking about that demo..." />
     <MESSAGE value="Fleshed out (heh) skeleton code for tempo transition" />
     <MESSAGE value="Pulled up callback assignment to abstract transition.Start()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pulled up callback assignment to abstract transition.Start()" />
+    <MESSAGE value="Saturday morning&#10;&#10;* Added closetween to Transition, might do some more hiding of the actual tween if I'm feeling brave/it becomes obviously a good idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="Saturday morning&#10;&#10;* Added closetween to Transition, might do some more hiding of the actual tween if I'm feeling brave/it becomes obviously a good idea" />
   </component>
 </project>
