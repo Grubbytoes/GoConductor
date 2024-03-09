@@ -77,6 +77,7 @@ public abstract partial class MusicTransition : Node
     public virtual void Kill()
     {
         TransitionTween?.Kill();
+        // Remember to stop all the outgoing tracks so they don't linger as ghosts...!
         foreach (var t in Outgoing)
         {
             t.Stop();
